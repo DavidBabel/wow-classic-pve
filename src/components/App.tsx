@@ -5,34 +5,11 @@ import ServerSelect from './ServerSelect/index';
 import { GuildKills } from './GuildKills/index';
 import { Checkbox } from './Checkbox/index';
 import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
+import { getBoolObjectAsArray } from '../utils/object';
+import { cleanRaidTitles } from '../config/raidTitles';
 
 const typedDatabase = (db as unknown) as Database;
 const servers = Object.keys(typedDatabase);
-
-function getBoolObjectAsArray<T>(anyBooleanObject: {
-  [x: string]: boolean;
-}): T[] {
-  return (Object.keys(anyBooleanObject) as any[]).reduce(
-    (prev: any[], next: any) => {
-      if (anyBooleanObject[next]) {
-        prev.push(next);
-      }
-      return prev;
-    },
-    []
-  );
-}
-
-const cleanRaidTitles: { [raidName in RaidNames]: string } = {
-  wb: 'World Bosses',
-  mc: 'Molten Core',
-  ony: 'Onyxia Lair',
-  bwl: 'Blackwing Lair',
-  zg: 'Zul Gurub',
-  aq20: 'Ahn Quiraj 20',
-  aq40: 'Ahn Quiraj 40',
-  naxx: 'Naxxramas'
-};
 
 export default function App() {
   const [currentServerName, setCurrentServerName] = useState('Sulfuron');
