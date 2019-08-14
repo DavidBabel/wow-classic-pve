@@ -1,10 +1,12 @@
 {
-  "cleanName": "Awaken",
-  "faction": "horde",
-  "gm": "Devilhunter",
-  "discord": "",
-  "site": "",
-  "instances": {
+  "infos": {
+    "cleanName": "Awaken",
+    "faction": "horde",
+    "gm": "Devilhunter",
+    "discord": "",
+    "site": ""
+  },
+  "raids": {
     "wb": {
       "Azuregos": false,
       "Kazzak": false

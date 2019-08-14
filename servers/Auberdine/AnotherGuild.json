@@ -1,10 +1,12 @@
 {
-  "cleanName": "AnotherGuild",
-  "faction": "horde",
-  "gm": "unknown",
-  "discord": "",
-  "site": "",
-  "instances": {
+  "infos": {
+    "cleanName": "AnotherGuild",
+    "faction": "horde",
+    "gm": "unknown",
+    "discord": "",
+    "site": ""
+  },
+  "raids": {
     "wb": {
       "Azuregos": false,
       "Kazzak": false

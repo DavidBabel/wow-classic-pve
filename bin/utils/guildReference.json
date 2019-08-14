@@ -1,10 +1,12 @@
 {
-  "cleanName": "",
-  "faction": "",
-  "gm": "",
-  "discord": "",
-  "site": "",
-  "instances": {
+  "infos": {
+    "cleanName": "",
+    "faction": "",
+    "gm": "",
+    "discord": "",
+    "site": ""
+  },
+  "raids": {
     "wb": {
       "Azuregos": false,
       "Kazzak": false
