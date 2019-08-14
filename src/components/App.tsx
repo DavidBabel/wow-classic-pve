@@ -9,6 +9,7 @@ import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
 import { getBoolObjectAsArray } from '../utils/object';
 import { cleanRaidTitles } from '../config/raidTitles';
 import { RouteComponentProps } from 'react-router-dom';
+import { Raids } from './Raids/index';
 
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
@@ -57,9 +58,9 @@ export default function App({
     );
   }
 
-  const guildsNames = Object.keys(currentServer).filter(guildName =>
+  const guildsNames = Object.keys(currentServer.guilds).filter(guildName =>
     getBoolObjectAsArray<Faction>(currentDisplayedFactions).includes(
-      currentServer[guildName].infos.faction
+      currentServer.guilds[guildName].infos.faction
     )
   );
 
@@ -106,7 +107,18 @@ export default function App({
       <div>
         {guildsNames.map(guildDetail => (
           <GuildKills
-            detail={currentServer[guildDetail]}
+            detail={currentServer.guilds[guildDetail]}
+            displayedRaids={getBoolObjectAsArray<RaidNames>(
+              currentDisplayedRaids
+            )}
+          />
+        ))}
+      </div>
+      <div>
+        {guildsNames.map(guildDetail => (
+          <Raids
+            currentServer={currentServer}
+            displayedGuilds={guildsNames}
             displayedRaids={getBoolObjectAsArray<RaidNames>(
               currentDisplayedRaids
             )}

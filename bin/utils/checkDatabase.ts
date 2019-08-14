@@ -38,6 +38,21 @@ export function isGuildInfosValid(base: any, ref: any, level: number = 0) {
   });
 }
 
-export function isServerValid() {
-  return true;
+export function isServerValid(obj: any) {
+  const keys = ['lang', 'type'];
+  const countKeys = Object.keys(obj).length - keys.length;
+  if (countKeys < 0) {
+    throw 'The server informations is missing some keys';
+  }
+  if (countKeys > 0) {
+    throw 'The server informations have too many keys';
+  }
+  keys.forEach(key => {
+    if (typeof obj[key] === 'undefined') {
+      throw `The server informations are missing the '${key}' key`;
+    }
+    if (typeof obj[key] !== 'string') {
+      throw `The server informations are missing the '${key}' key`;
+    }
+  });
 }
