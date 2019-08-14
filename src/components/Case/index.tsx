@@ -1,12 +1,12 @@
 import React from 'react';
 import { Faction } from '../../types/database.type';
 
-import killAlliance from '../../img/skin/default/killAlliance.gif';
-import killHorde from '../../img/skin/default/killHorde.gif';
-import nokill from '../../img/skin/default/nokill.gif';
-import fkill from '../../img/skin/default/fkill.gif';
-import fkillHorde from '../../img/skin/default/fkillHorde.gif';
-import fkillAlliance from '../../img/skin/default/fkillAlliance.gif';
+const killAlliance = '/img/skin/default/killAlliance.gif';
+const killHorde = '/img/skin/default/killHorde.gif';
+const nokill = '/img/skin/default/nokill.gif';
+const fkill = '/img/skin/default/fkill.gif';
+const fkillHorde = '/img/skin/default/fkillHorde.gif';
+const fkillAlliance = '/img/skin/default/fkillAlliance.gif';
 
 interface Props {
   isFirst?: boolean;

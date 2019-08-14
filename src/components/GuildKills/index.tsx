@@ -1,6 +1,7 @@
 import React from 'react';
 import { Guild, RaidNames } from '../../types/database.type';
 import { Case } from '../Case/index';
+import styles from './styles.module.scss';
 
 interface Props {
   detail: Guild;
@@ -21,7 +22,7 @@ export function GuildKills({
       ));
   };
   return (
-    <div>
+    <div className={styles.GuildKills}>
       {infos.cleanName}
       {raidNames
         .filter(raidName => displayedRaids.includes(raidName))
