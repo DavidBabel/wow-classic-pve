@@ -1,14 +1,6 @@
 import React from 'react';
 import { Guild, RaidNames } from '../../types/database.type';
-import {
-  Case,
-  FirstServerCase,
-  FirstHordeCase,
-  FirstAllianceCase,
-  EmptyCase,
-  KillAllianceCase,
-  KillHordeCase
-} from '../Case/index';
+import { Case } from '../Case/index';
 
 interface Props {
   detail: Guild;

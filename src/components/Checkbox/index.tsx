@@ -8,7 +8,7 @@ import { RaidNames, Faction } from '../../types/database.type';
 
 interface Props {
   name: RaidNames | Faction;
-  label: string;
+  label: string | React.ReactNode;
   isChecked: boolean;
   onChange: (newValue: Partial<DisplayedRaids | DisplayedFactions>) => void;
 }
