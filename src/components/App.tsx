@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import db from '../generatedDatabase.json';
+
+import rawDB from '../generatedDatabase.json';
 import { Database, Faction, RaidNames } from '../types/database.type';
 import ServerSelect from './ServerSelect/index';
 import { GuildKills } from './GuildKills/index';
@@ -7,12 +8,20 @@ import { Checkbox } from './Checkbox/index';
 import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
 import { getBoolObjectAsArray } from '../utils/object';
 import { cleanRaidTitles } from '../config/raidTitles';
+import { RouteComponentProps } from 'react-router-dom';
 
-const typedDatabase = (db as unknown) as Database;
+const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
-export default function App() {
-  const [currentServerName, setCurrentServerName] = useState('Sulfuron');
+type Props = RouteComponentProps<{ serverName?: string }>;
+
+export default function App({
+  match: {
+    params: { serverName = '' }
+  },
+  history
+}: Props) {
+  const [currentServerName, setCurrentServerName] = useState(serverName);
   const [currentDisplayedFactions, setFactionDisplayed] = useState<
     DisplayedFactions
   >({
@@ -31,15 +40,36 @@ export default function App() {
   });
 
   const currentServer = typedDatabase[currentServerName];
+
+  if (serverName === '') {
+    history.push('/Sulfuron');
+  }
+
+  if (!servers.includes(serverName)) {
+    return (
+      <div>
+        Something went wrong, this server is not known. Please go to{' '}
+        <a href="https://github.com/DavidBabel/wow-classic-pve">
+          https://github.com/DavidBabel/wow-classic-pve
+        </a>{' '}
+        and create it.
+      </div>
+    );
+  }
+
   const guildsNames = Object.keys(currentServer).filter(guildName =>
     getBoolObjectAsArray<Faction>(currentDisplayedFactions).includes(
       currentServer[guildName].infos.faction
     )
   );
+
   return (
     <div className="App">
       <ServerSelect
-        onChange={(newServer: string) => setCurrentServerName(newServer)}
+        onChange={(newServer: string) => {
+          setCurrentServerName(newServer);
+          history.push(`/${newServer}`);
+        }}
         servers={servers}
         selected={currentServerName}
       />

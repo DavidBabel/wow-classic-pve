@@ -17,13 +17,13 @@ export default function ServerSelect({
 }: Props) {
   return (
     <FormControl style={{ width: 400 }}>
-      <InputLabel htmlFor="age-simple">Choose your Server</InputLabel>
+      <InputLabel htmlFor="server-simple">Choose your Server</InputLabel>
       <Select
         value={selected}
         onChange={(event: ChangeEvent<any>) => onChange(event.target.value)}
         inputProps={{
-          name: 'age',
-          id: 'age-simple'
+          name: 'server',
+          id: 'server-simple'
         }}
       >
         {servers.map(server => (
