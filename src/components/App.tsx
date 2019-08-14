@@ -3,18 +3,45 @@ import db from '../generatedDatabase.json';
 import { Database, Faction, RaidNames } from '../types/database.type';
 import ServerSelect from './ServerSelect/index';
 import { GuildKills } from './GuildKills/index';
-import { RaidCheckbox } from './RaidCheckbox/index';
-import { DisplayedRaids } from '../types/states.type';
+import { Checkbox } from './Checkbox/index';
+import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
 
 const typedDatabase = (db as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
+function getBoolObjectAsArray<T>(anyBooleanObject: {
+  [x: string]: boolean;
+}): T[] {
+  return (Object.keys(anyBooleanObject) as any[]).reduce(
+    (prev: any[], next: any) => {
+      if (anyBooleanObject[next]) {
+        prev.push(next);
+      }
+      return prev;
+    },
+    []
+  );
+}
+
+const cleanRaidTitles: { [raidName in RaidNames]: string } = {
+  wb: 'World Bosses',
+  mc: 'Molten Core',
+  ony: 'Onyxia Lair',
+  bwl: 'Blackwing Lair',
+  zg: 'Zul Gurub',
+  aq20: 'Ahn Quiraj 20',
+  aq40: 'Ahn Quiraj 40',
+  naxx: 'Naxxramas'
+};
+
 export default function App() {
   const [currentServerName, setCurrentServerName] = useState('Sulfuron');
-  const [showFactions, setFactionsToShow] = useState<Faction[]>([
-    'alliance',
-    'horde'
-  ]);
+  const [currentDisplayedFactions, setFactionDisplayed] = useState<
+    DisplayedFactions
+  >({
+    alliance: true,
+    horde: true
+  });
   const [currentDisplayedRaids, setRaidDisplayed] = useState<DisplayedRaids>({
     wb: true,
     mc: true,
@@ -25,8 +52,13 @@ export default function App() {
     aq40: false,
     naxx: false
   });
+
   const currentServer = typedDatabase[currentServerName];
-  const guildsNames = Object.keys(currentServer);
+  const guildsNames = Object.keys(currentServer).filter(guildName =>
+    getBoolObjectAsArray<Faction>(currentDisplayedFactions).includes(
+      currentServer[guildName].infos.faction
+    )
+  );
   return (
     <div className="App">
       <ServerSelect
@@ -34,12 +66,28 @@ export default function App() {
         servers={servers}
         selected={currentServerName}
       />
+      {(Object.keys(currentDisplayedFactions) as Faction[]).map(
+        (factionName: Faction) => (
+          <Checkbox
+            name={factionName}
+            label={factionName} // todo, put images here
+            isChecked={currentDisplayedFactions[factionName]}
+            onChange={newValue =>
+              setFactionDisplayed({
+                ...currentDisplayedFactions,
+                ...newValue
+              })
+            }
+          />
+        )
+      )}
       {(Object.keys(currentDisplayedRaids) as RaidNames[]).map(
         (raidName: RaidNames) => (
-          <RaidCheckbox
+          <Checkbox
             name={raidName}
+            label={cleanRaidTitles[raidName]}
             isChecked={currentDisplayedRaids[raidName]}
-            onChange={(newValue: Partial<DisplayedRaids>) =>
+            onChange={newValue =>
               setRaidDisplayed({
                 ...currentDisplayedRaids,
                 ...newValue
@@ -48,18 +96,12 @@ export default function App() {
           />
         )
       )}
-
       {guildsNames.map(guildDetail => (
         <GuildKills
           detail={currentServer[guildDetail]}
-          displayedRaids={(Object.keys(
+          displayedRaids={getBoolObjectAsArray<RaidNames>(
             currentDisplayedRaids
-          ) as RaidNames[]).reduce((prev: RaidNames[], next: RaidNames) => {
-            if (currentDisplayedRaids[next]) {
-              prev.push(next);
-            }
-            return prev;
-          }, [])}
+          )}
         />
       ))}
     </div>

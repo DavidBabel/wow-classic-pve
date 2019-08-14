@@ -24,7 +24,9 @@ export function GuildKills({
     const bosses = Object.keys(raids[raidName]);
     return bosses
       .reverse()
-      .map((boss: string) => <Case date={(raids[raidName] as any)[boss]} />);
+      .map((boss: string) => (
+        <Case faction={infos.faction} date={(raids[raidName] as any)[boss]} />
+      ));
   };
   return (
     <div>
@@ -33,14 +35,6 @@ export function GuildKills({
         .filter(raidName => displayedRaids.includes(raidName))
         .reverse()
         .map(getBosses)}
-      {/* <div id="tests">
-        <FirstServerCase date="coucou" />
-        <FirstHordeCase date="coucou" />
-        <FirstAllianceCase date="coucou" />
-        <KillHordeCase date="coucou" />
-        <KillAllianceCase date="coucou" />
-        <EmptyCase />
-      </div> */}
     </div>
   );
 }
