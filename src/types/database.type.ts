@@ -3,7 +3,7 @@ export type DownDate = string | boolean;
 export type Faction = 'horde' | 'alliance';
 
 export interface Database {
-  [server: string]: Guild;
+  [server: string]: { [guildName: string]: Guild };
 }
 export interface GuildInfos {
   cleanName: string;

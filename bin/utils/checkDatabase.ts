@@ -37,3 +37,7 @@ export function isGuildInfosValid(base: any, ref: any, level: number = 0) {
     }
   });
 }
+
+export function isServerValid() {
+  return true;
+}

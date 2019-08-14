@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { isGuildInfosValid } from './utils/checkDatabase';
+import { isGuildInfosValid, isServerValid } from './utils/checkDatabase';
 import * as colors from 'colors/safe';
 
 const guildInfosRef = JSON.parse(
