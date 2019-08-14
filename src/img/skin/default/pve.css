@@ -1,0 +1,272 @@
+body
+{
+ background-color : #000000 ;
+}
+table,td,tr
+{
+ border : 0px;
+ border-collapse : collapse;
+ padding : 0;
+ border-spacing : 0;
+}
+div
+{
+ white-space: nowrap;
+}
+hr
+{
+ width : 80% ;
+ height : 2px ;
+ color : #303030 ;
+ background-color: #303030;
+ text-align: center;
+ border: 0;
+}
+input
+{ 
+ border : 1px solid #415680;
+ font-size : 11px;
+ font-family : Tahoma,sans-serif;
+ color : #E6EBFB; 
+ text-align : center; 
+ background-color : #001238;
+} 
+input:hover , select:hover, option:hover
+{
+ background-color: #415680;
+}
+select, option, textarea
+{ 
+ border : 1px solid #415680;
+ font-size : 10px;
+ font-family : Tahoma,sans-serif;
+ color : #E6EBFB; 
+ text-align : left; 
+ background-color : #001238;
+} 
+.fond
+{
+ background-color: #090909; 
+}
+.fond2
+{
+ background-color: #181818; 
+}
+.history 
+{
+ height: 74px;
+ overflow: hidden;
+ filter: alpha(opacity=52);
+ -moz-opacity: 0.52;
+ opacity: 0.52;
+}
+.historyOver 
+{
+ height: 265px;
+ filter: alpha(opacity=67);
+ -moz-opacity: 0.67;
+ opacity: 0.67;
+}
+.admin
+{
+ filter: alpha(opacity=75);
+ -moz-opacity: 0.75;
+ opacity: 0.75;
+}
+.hide,.hide3
+{
+ color: #000000;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.hide:hover,.hide2
+{
+ color: #666666;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.h,.h2
+{								
+ color: #D6AB00;
+ font-family: Helvetica, Verdana;
+ font-size: 16px;
+ font-weight: bold;
+ vertical-align: top;
+ text-decoration: none;
+}
+.h3
+{								
+ color: #D6AB00;
+ font-family: Helvetica, Verdana;
+ font-size: 14px;
+ font-weight: bold;
+ vertical-align: top;
+ text-decoration: none;
+}
+.h:hover
+{								
+ color: #FFD21E;
+}
+.tous
+{								
+ color: #D3A900;
+ font-family: Helvetica, Verdana;
+ font-size: 14px;
+ font-weight: bold;
+ vertical-align: top;
+ text-decoration: none;
+}
+.all
+{								
+ color: #297BA6;
+ font-family: Helvetica, Verdana;
+ font-size: 14px;
+ font-weight: bold;
+ vertical-align: top;
+ text-decoration: none;
+}
+.hor
+{								
+ color: #BB410C;
+ font-family: Helvetica, Verdana;
+ font-size: 14px;
+ font-weight: bold;
+ vertical-align: top;
+ text-decoration: none;
+}
+.jutsu
+{
+ color: #666666;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.jutsu:hover
+{					
+ color: #999999;
+ text-decoration: underline;
+}
+.bl
+{
+ color: #ffffff;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+ text-align: center;
+}
+.page
+{
+ color: #ffffff;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+ text-align: center;
+}
+.page2
+{
+ color: #ffffff;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+ font-weight: bold;
+}
+.page:hover
+{
+ text-decoration: underline;
+}
+.guild 
+{
+ text-align: center;
+ width : 32px;
+ height: 40px;
+}
+.guildName 
+{
+ color: #cccccc;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none;
+}
+.guildName:hover 
+{					
+ color: #ffffff;
+ text-decoration: underline;
+}
+.boss
+{
+ width: 182px;
+ padding: 0px 3px 0px;
+ height: 20px; 
+}
+.bossName
+{
+ color: #ffff99;
+ font: 11px Verdana,Helvetica, sans-serif; 
+ text-decoration: none;
+}
+.bossName:hover 
+{
+ text-decoration: underline;
+}
+.pseudo,.compt2
+{
+ color: #ffffff;
+ font: 11px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.down
+{
+ color: #ffffff;
+ font: 9px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.down2
+{
+ color: #ffff99;
+ font: 9px Verdana,Helvetica, sans-serif; 
+ text-decoration: none;
+}
+.pseudo:hover 
+{					
+ text-decoration: underline;
+}
+.nom,.compt
+{
+ color: #ffff99;
+ font: 11px Verdana,Helvetica, sans-serif; 
+ text-decoration: none;
+}
+.nom:hover 
+{
+ text-decoration: underline;
+}
+.detail
+{
+ color: #ffffff;
+ font: 11px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.detailgris
+{
+ color: #757575;
+ font: 11px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.copy
+{
+ color: #666666;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-decoration: none; 
+}
+.copy:hover
+{					
+ color: #999999;
+ text-decoration: underline;
+}
+.popperlink 
+{
+ position : absolute;
+ visibility : hidden;
+}
+.poptxt
+{
+ color: #000000;
+ font: 10px Verdana, Helvetica, sans-serif;
+ text-align: center;
+ text-decoration: none;
+}
