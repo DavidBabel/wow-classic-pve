@@ -15,15 +15,17 @@ export function GuildKills({
   const raidNames: RaidNames[] = Object.keys(raids) as RaidNames[];
   const getBosses = (raidName: RaidNames) => {
     const bosses = Object.keys(raids[raidName]);
-    return bosses
-      .reverse()
-      .map((boss: string) => (
-        <Case faction={infos.faction} date={(raids[raidName] as any)[boss]} />
-      ));
+    return (
+      <div className={styles.bossBox}>
+        {bosses.reverse().map((boss: string) => (
+          <Case faction={infos.faction} date={(raids[raidName] as any)[boss]} />
+        ))}
+      </div>
+    );
   };
   return (
     <div className={styles.GuildKills}>
-      {infos.cleanName}
+      {/* {infos.cleanName} */}
       {raidNames
         .filter(raidName => displayedRaids.includes(raidName))
         .reverse()

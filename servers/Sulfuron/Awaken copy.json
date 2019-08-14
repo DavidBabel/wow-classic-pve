@@ -1,0 +1,87 @@
+{
+  "infos": {
+    "cleanName": "Awaken",
+    "faction": "horde",
+    "gm": "Devilhunter",
+    "discord": "",
+    "site": ""
+  },
+  "raids": {
+    "wb": {
+      "Azuregos": false,
+      "Kazzak": false
+    },
+    "mc": {
+      "Lucifron": "2019-08-14",
+      "Magmadar": false,
+      "Gehennas": false,
+      "Garr": false,
+      "Shazzrah": false,
+      "Baron Geddon": false,
+      "Sulfuron Harbinger": false,
+      "Golemagg the Incinerator": false,
+      "Majordomo Executus": false,
+      "Ragnaros": false
+    },
+    "ony": {
+      "Onyxia": false
+    },
+    "bwl": {
+      "Razorgore the Untamed": false,
+      "Vaelastrasz the Corrupt": false,
+      "Broodlord Lashlayer": false,
+      "Firemaw": false,
+      "Ebonroc": false,
+      "Flamegor": false,
+      "Chromaggus": false,
+      "Nefarian": false
+    },
+    "zg": {
+      "High Priest Venoxis": false,
+      "Bloodlord Mandokir": false,
+      "Cache of Madness - Gri'lek": false,
+      "Cache of Madness - Hazza'rah": false,
+      "Cache of Madness - Renataki": false,
+      "Cache of Madness - Wushoolay": false,
+      "High Priestess Kilnara": false,
+      "Zanzil": false,
+      "Jin'do the Godbreaker": false
+    },
+    "aq20": {
+      "Kurinnaxx": false,
+      "General Rajaxx": false,
+      "Moam": false,
+      "Buru the Gorger": false,
+      "Ayamiss the Hunter": false,
+      "Ossirian the Unscarred": false
+    },
+    "aq40": {
+      "The Prophet Skeram": false,
+      "Battleguard Sartura": false,
+      "Fankriss the Unyielding": false,
+      "Princess Huhuran": false,
+      "Silithid Royalty": false,
+      "Viscidus": false,
+      "The Twin Emperors": false,
+      "Ouro": false,
+      "C'thun": false
+    },
+    "naxx": {
+      "Anub'Rekhan": false,
+      "Grand Widow Faerlina": false,
+      "Maexxna": false,
+      "Noth the Plaguebringer": false,
+      "Heigan the Unclean": false,
+      "Loatheb": false,
+      "Instructor Razuvious": false,
+      "Gothik the Harvester": false,
+      "The Four Horsemen": false,
+      "Patchwerk": false,
+      "Grobbulus": false,
+      "Gluth": false,
+      "Thaddius": false,
+      "Sapphiron": false,
+      "Kel'Thuzad": false
+    }
+  }
+}

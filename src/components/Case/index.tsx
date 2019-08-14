@@ -1,5 +1,6 @@
 import React from 'react';
 import { Faction } from '../../types/database.type';
+import styles from './styles.module.scss';
 
 const killAlliance = '/img/skin/default/killAlliance.gif';
 const killHorde = '/img/skin/default/killHorde.gif';
@@ -27,7 +28,7 @@ export function Case({ date, isFirst, isServerFirst, faction }: Props) {
     }
   }
   return (
-    <div>
+    <div className={styles.Case}>
       <img src={imgSrc} alt={date} title={date} />
     </div>
   );

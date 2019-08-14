@@ -103,14 +103,16 @@ export default function App({
           />
         )
       )}
-      {guildsNames.map(guildDetail => (
-        <GuildKills
-          detail={currentServer[guildDetail]}
-          displayedRaids={getBoolObjectAsArray<RaidNames>(
-            currentDisplayedRaids
-          )}
-        />
-      ))}
+      <div>
+        {guildsNames.map(guildDetail => (
+          <GuildKills
+            detail={currentServer[guildDetail]}
+            displayedRaids={getBoolObjectAsArray<RaidNames>(
+              currentDisplayedRaids
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }
