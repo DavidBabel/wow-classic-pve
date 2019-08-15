@@ -68,10 +68,10 @@ export interface Raids {
   zg: {
     'High Priest Venoxis': DownDate;
     'Bloodlord Mandokir': DownDate;
-    "Cache of Madness - Gri'lek": DownDate;
-    "Cache of Madness - Hazza'rah": DownDate;
-    'Cache of Madness - Renataki': DownDate;
-    'Cache of Madness - Wushoolay': DownDate;
+    "CoM - Gri'lek": DownDate;
+    "CoM - Hazza'rah": DownDate;
+    'CoM - Renataki': DownDate;
+    'CoM - Wushoolay': DownDate;
     'High Priestess Kilnara': DownDate;
     Zanzil: DownDate;
     "Jin'do the Godbreaker": DownDate;

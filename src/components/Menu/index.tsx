@@ -1,18 +1,12 @@
 import React from 'react';
-// import { withStyles } from '@material-ui/core/styles';
-// import { MenuProps } from '@material-ui/core/Menu';
 import {
-  // Menu as MaterialMenu,
   Drawer,
   Button,
   ListItem,
   ListItemText,
   ListItemIcon,
-  // MenuItem,
   List,
-  Divider,
-  Typography,
-  Popover
+  Divider
 } from '@material-ui/core';
 import { MenuIcon, AddGuild, AddServer, GridPlus, HelpIcon } from './icons';
 
@@ -21,37 +15,6 @@ import { ModalCreateGuild } from '../ModalCreateGuild';
 import { ModalAddKillInfo } from '../ModalAddKillInfo';
 import { ModalHelp } from '../ModalHelp';
 import { Database } from '../../types/database.type';
-
-// const StyledMenu = withStyles({
-//   paper: {
-//     border: '1px solid #d3d4d5'
-//   }
-// })((props: MenuProps) => (
-//   <MaterialMenu
-//     elevation={0}
-//     getContentAnchorEl={null}
-//     anchorOrigin={{
-//       vertical: 'bottom',
-//       horizontal: 'center'
-//     }}
-//     transformOrigin={{
-//       vertical: 'top',
-//       horizontal: 'center'
-//     }}
-//     {...props}
-//   />
-// ));
-
-// const StyledMenuItem = withStyles(theme => ({
-//   root: {
-//     '&:focus': {
-//       backgroundColor: theme.palette.primary.main,
-//       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-//         color: theme.palette.common.white
-//       }
-//     }
-//   }
-// }))(MenuItem);
 
 interface Props {
   database: Database;
@@ -76,18 +39,15 @@ export function Menu({ database, currentServer }: Props) {
   ] = React.useState(false);
 
   return (
-    <div>
+    <div style={{ display: 'inline-block' }}>
       <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
+        color="default"
         onClick={() => setOpen(true)}
       >
-        <ListItemIcon>
-          <MenuIcon />
-        </ListItemIcon>
-        Open Menu
+        <MenuIcon />
       </Button>
       <Drawer open={isOpen} onClose={() => setOpen(false)}>
         <List>
