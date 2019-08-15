@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaidNames, Server, Guilds, Guild } from '../../types/database.type';
+import { RaidNames, Server, Guild } from '../../types/database.type';
 import { Case } from '../Case/index';
 import styles from './styles.module.scss';
 
