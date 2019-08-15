@@ -4,9 +4,10 @@ import './index.scss';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
+import CONFIG from './config';
 
 ReactDOM.render(
-  <BrowserRouter basename="/wow-classic-pve">
+  <BrowserRouter basename={CONFIG.appPath}>
     <Route path="/:serverName" exact component={App} />
     <Route path="/" exact component={App} />
   </BrowserRouter>,

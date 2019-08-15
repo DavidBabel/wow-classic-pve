@@ -6,9 +6,6 @@ workflow "Validation" {
   ]
 }
 
-# action "Setup Node.js" {
-#   uses = "actions/setup-node@v1"
-# }
 action "Install dependencies" {
   uses = "docker://node:12-alpine"
   runs = "yarn install"
@@ -43,16 +40,22 @@ action "Tests" {
 
 action "Build" {
   uses  = "docker://node:12-alpine"
-  runs  = "yarn build"
+
+  runs  = [
+    "sh",
+    "-c",
+    "yarn build"
+  ]
 
   needs = [
     "Build Database"
   ]
+
+  env   = {
+    APP_PATH = "/wow-classic-pve"
+  }
 }
 
-#  env   = {
-#    NODE_ENV = "production"
-#  }
 action "master branch only" {
   uses  = "actions/bin/filter@master"
   args  = "branch master"
@@ -76,7 +79,6 @@ action "Deploy to gh-pages" {
 
   env     = {
     BRANCH       = "gh-pages"
-    #    BUILD_SCRIPT = "yarn install && yarn build-db && CI=true yarn test && yarn build"
     BUILD_SCRIPT = ""
     FOLDER       = "build"
   }
