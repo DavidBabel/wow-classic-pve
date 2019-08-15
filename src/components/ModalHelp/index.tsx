@@ -57,10 +57,16 @@ export function ModalHelp({ isOpen, onClose }: Props) {
           formularies of the app automatically create or update the right files
           for you.
         </p>
-        <p> Just think to scroll down and create a pull request :</p>
+        <p>
+          Just think to scroll down and create a branch with your modifications
+          :
+        </p>
         <div style={{ textAlign: 'center', padding: 25 }}>
           <img src={helpImage} style={{ width: 800 }} alt="" />
         </div>
+        <p>
+          Then, on the next page, you have to create a new <b>pull request</b>.
+        </p>
       </div>
     </Modal>
   );

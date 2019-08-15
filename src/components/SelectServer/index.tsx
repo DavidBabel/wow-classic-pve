@@ -17,7 +17,7 @@ export default function ServerSelect({
 }: Props) {
   return (
     <FormControl style={{ width: 400 }}>
-      <InputLabel htmlFor="server-simple">Choose your Server</InputLabel>
+      <InputLabel htmlFor="server-simple">Server</InputLabel>
       <Select
         value={selected}
         onChange={(event: ChangeEvent<any>) => onChange(event.target.value)}

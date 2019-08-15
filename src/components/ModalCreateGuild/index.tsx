@@ -5,14 +5,8 @@ import {
   TextField,
   Modal,
   FormControlLabel,
-  Select,
-  FormControl,
-  InputLabel,
   Button
 } from '@material-ui/core';
-// import Radio, { RadioProps } from '@material-ui/core/Radio';
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 import { openGithub } from '../../utils/openGithub';
 
