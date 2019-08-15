@@ -30,12 +30,16 @@ action "Tests" {
   runs  = [
     "sh",
     "-c",
-    "CI=true yarn test"
+    "yarn test"
   ]
 
   needs = [
     "Build Database"
   ]
+
+  env   = {
+    CI = "true"
+  }
 }
 
 action "Build" {
