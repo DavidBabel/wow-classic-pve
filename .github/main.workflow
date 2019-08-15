@@ -6,30 +6,19 @@ workflow "Deploy to Github Pages" {
   ]
 }
 
-action "Setup Node.js" {
-  uses = "actions/bin/sh@master"
+# action "Setup Node.js" {
+#   uses = "actions/setup-node@v1"
+# }
+action "Install dependencies" {
+  uses = "actions/setup-node@v1"
 
   args = [
-    "apt-get install curl",
-    "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash",
-    "nvm install 12"
-  ]
-}
-
-action "Install dependencies" {
-  uses  = "actions/bin/sh@master"
-
-  args  = [
     "yarn install"
-  ]
-
-  needs = [
-    "Setup Node.js"
   ]
 }
 
 action "Build Database" {
-  uses  = "actions/bin/sh@master"
+  uses  = "actions/setup-node@v1"
 
   args  = [
     "yarn build-db"
@@ -41,7 +30,7 @@ action "Build Database" {
 }
 
 action "Tests" {
-  uses  = "actions/bin/sh@master"
+  uses  = "actions/setup-node@v1"
 
   args  = [
     "CI=true yarn test"
@@ -53,7 +42,7 @@ action "Tests" {
 }
 
 action "Build" {
-  uses  = "actions/bin/sh@master"
+  uses  = "actions/setup-node@v1"
 
   args  = [
     "yarn build"
