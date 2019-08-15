@@ -26,8 +26,12 @@ action "Build Database" {
 
 action "Tests" {
   uses  = "docker://node:12-alpine"
-  runs  = "CI=true yarn"
-  args  = "test"
+
+  runs  = [
+    "sh",
+    "-c",
+    "CI=true yarn test"
+  ]
 
   needs = [
     "Build Database"
