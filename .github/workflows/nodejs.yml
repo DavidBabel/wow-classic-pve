@@ -20,9 +20,9 @@ jobs:
     - name: install dependencies
       run: |
         yarn install
-    - name: Runs mount test
-      run: |
-        CI=true yarn test
     - name: Check DB
       run: |
         yarn build-db
+    - name: Runs mount test
+      run: |
+        CI=true yarn test
