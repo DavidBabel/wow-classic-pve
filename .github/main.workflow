@@ -40,11 +40,20 @@ action "Tests" {
 
 action "Build" {
   uses  = "docker://node:12-alpine"
-  runs  = "yarn build"
+
+  runs  = [
+    "sh",
+    "-c",
+    "yarn build"
+  ]
 
   needs = [
     "Build Database"
   ]
+
+  env   = {
+    APP_PATH = "/wow-classic-pve"
+  }
 }
 
 action "master branch only" {

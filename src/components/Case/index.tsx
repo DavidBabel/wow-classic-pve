@@ -1,13 +1,15 @@
 import React from 'react';
 import { Faction } from '../../types/database.type';
 import styles from './styles.module.scss';
+import CONFIG from '../../config';
 
-const killAlliance = '/img/skin/default/killAlliance.gif';
-const killHorde = '/img/skin/default/killHorde.gif';
-const nokill = '/img/skin/default/nokill.gif';
-const fkill = '/img/skin/default/fkill.gif';
-const fkillHorde = '/img/skin/default/fkillHorde.gif';
-const fkillAlliance = '/img/skin/default/fkillAlliance.gif';
+const baseUrl = `${CONFIG.appPath}/img/skin/${CONFIG.skin}`;
+const killAlliance = `${baseUrl}/killAlliance.gif`;
+const killHorde = `${baseUrl}/killHorde.gif`;
+const nokill = `${baseUrl}/nokill.gif`;
+const fkill = `${baseUrl}/fkill.gif`;
+const fkillHorde = `${baseUrl}/fkillHorde.gif`;
+const fkillAlliance = `${baseUrl}/fkillAlliance.gif`;
 
 interface Props {
   isFirst?: boolean;
