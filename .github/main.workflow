@@ -10,7 +10,7 @@ workflow "Deploy to Github Pages" {
 #   uses = "actions/setup-node@v1"
 # }
 action "Install dependencies" {
-  uses = "actions/setup-node@v1"
+  uses = "docker://node:alpine"
 
   args = [
     "yarn install"
@@ -18,7 +18,7 @@ action "Install dependencies" {
 }
 
 action "Build Database" {
-  uses  = "actions/setup-node@v1"
+  uses  = "docker://node:alpine"
 
   args  = [
     "yarn build-db"
@@ -30,7 +30,7 @@ action "Build Database" {
 }
 
 action "Tests" {
-  uses  = "actions/setup-node@v1"
+  uses  = "docker://node:alpine"
 
   args  = [
     "CI=true yarn test"
@@ -42,7 +42,7 @@ action "Tests" {
 }
 
 action "Build" {
-  uses  = "actions/setup-node@v1"
+  uses  = "docker://node:alpine"
 
   args  = [
     "yarn build"
