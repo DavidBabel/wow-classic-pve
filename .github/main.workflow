@@ -7,19 +7,23 @@ workflow "Deploy to Github Pages" {
 }
 
 action "Setup Node.js" {
-  uses = "actions/setup-node@dd2e8a486fdc1071872c594d5388fd6dce1a7534"
-
-  #   uses = actions/setup-node@v1
- # args = [
- #   "--node-version 12.x"
- # ]
-}
-
-action "Install dependencies" {
   uses = "actions/bin/sh@master"
 
   args = [
+    "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash",
+    "nvm install 12"
+  ]
+}
+
+action "Install dependencies" {
+  uses  = "actions/bin/sh@master"
+
+  args  = [
     "yarn install"
+  ]
+
+  needs = [
+    "Setup Node.js"
   ]
 }
 
@@ -83,7 +87,6 @@ action "Deploy to gh-pages" {
   env     = {
     BRANCH       = "gh-pages"
     BUILD_SCRIPT = "yarn install && yarn build-db && CI=true yarn test && yarn build"
-    #    BUILD_SCRIPT = ""
     FOLDER       = "build"
   }
 }
