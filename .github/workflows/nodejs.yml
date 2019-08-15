@@ -22,7 +22,7 @@ jobs:
         yarn install
     - name: Runs mount test
       run: |
-        yarn test
+        CI=true yarn test
     - name: Check DB
       run: |
         yarn build-db
