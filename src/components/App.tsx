@@ -10,6 +10,15 @@ import { cleanRaidTitles } from '../config/raidTitles';
 import { RouteComponentProps } from 'react-router-dom';
 import { Raids } from './Raids/index';
 import { Menu } from './Menu';
+import { capitalize } from '../utils/string';
+import { fkillAlliance, fkillHorde } from './Case';
+import {
+  Drawer,
+  Button,
+  Checkbox as MaterialCheckbox,
+  FormControlLabel
+} from '@material-ui/core';
+import { display } from '@material-ui/system';
 
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
@@ -18,7 +27,9 @@ type Props = RouteComponentProps<{ serverName?: string }>;
 
 export default function App({ match, history }: Props) {
   const serverName = (match && match.params && match.params.serverName) || '';
+  const [showRaidDrawer, setRaidDrawerVisibility] = useState(false);
   const [currentServerName, setCurrentServerName] = useState(serverName);
+  const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(false);
   const [currentDisplayedFactions, setFactionDisplayed] = useState<
     DisplayedFactions
   >({
@@ -64,60 +75,60 @@ export default function App({ match, history }: Props) {
   );
 
   return (
-    <div className="App">
+    <div style={{ marginTop: 100 }}>
       <Menu database={typedDatabase} currentServer={currentServerName} />
-      <ServerSelect
-        onChange={(newServer: string) => {
-          setCurrentServerName(newServer);
-          history.push(`/${newServer}`);
-        }}
-        servers={servers}
-        selected={currentServerName}
-      />
-      {(Object.keys(currentDisplayedFactions) as Faction[]).map(
-        (factionName: Faction) => (
-          <Checkbox
-            name={factionName}
-            label={factionName} // todo, put images here
-            isChecked={currentDisplayedFactions[factionName]}
-            onChange={newValue =>
-              setFactionDisplayed({
-                ...currentDisplayedFactions,
-                ...newValue
-              })
+      <div style={{ position: 'fixed', right: 0, top: 0, display: 'flex' }}>
+        <div style={{ margin: 10 }}>
+          <FormControlLabel
+            control={
+              <MaterialCheckbox
+                checked={showEmptyGuilds}
+                onChange={() => setEmptyGuildsVisibility(!showEmptyGuilds)}
+                color="primary"
+              />
             }
+            label={'Show all guilds'}
           />
-        )
-      )}
-      {(Object.keys(currentDisplayedRaids) as RaidNames[]).map(
-        (raidName: RaidNames) => (
-          <Checkbox
-            name={raidName}
-            label={cleanRaidTitles[raidName]}
-            isChecked={currentDisplayedRaids[raidName]}
-            onChange={newValue => {
-              const newState = {
-                ...currentDisplayedRaids,
-                ...newValue
-              };
-              setRaidDisplayed(newState);
-              // history.push({ search: qs.stringify(newState) });
+          {(Object.keys(currentDisplayedFactions) as Faction[]).map(
+            (factionName: Faction) => (
+              <Checkbox
+                name={factionName}
+                label={
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                      src={factionName === 'horde' ? fkillHorde : fkillAlliance}
+                      alt={factionName}
+                    />
+                    &nbsp;&nbsp;{capitalize(factionName)}
+                  </span>
+                }
+                isChecked={currentDisplayedFactions[factionName]}
+                onChange={newValue =>
+                  setFactionDisplayed({
+                    ...currentDisplayedFactions,
+                    ...newValue
+                  })
+                }
+              />
+            )
+          )}
+        </div>
+
+        <div style={{ margin: 10 }}>
+          <ServerSelect
+            onChange={(newServer: string) => {
+              setCurrentServerName(newServer);
+              history.push(`/${newServer}`);
             }}
+            servers={servers}
+            selected={currentServerName}
           />
-        )
-      )}
-      {/* <div>
-        {guildsNames.map(guildDetail => (
-          <GuildKills
-            detail={currentServer.guilds[guildDetail]}
-            displayedRaids={getBoolObjectAsArray<RaidNames>(
-              currentDisplayedRaids
-            )}
-          />
-        ))}
-      </div> */}
+        </div>
+      </div>
+
       <div>
         <Raids
+          showEmptyGuilds={showEmptyGuilds}
           currentServer={currentServer}
           displayedGuilds={guildsNames}
           displayedRaids={getBoolObjectAsArray<RaidNames>(
@@ -125,6 +136,53 @@ export default function App({ match, history }: Props) {
           )}
         />
       </div>
+      <Drawer open={showRaidDrawer} anchor="bottom" variant="persistent">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            paddingLeft: '15%',
+            width: '85%'
+          }}
+        >
+          {(Object.keys(currentDisplayedRaids) as RaidNames[]).map(
+            (raidName: RaidNames) => (
+              <div style={{ margin: 5, whiteSpace: 'nowrap' }}>
+                <Checkbox
+                  name={raidName}
+                  label={cleanRaidTitles[raidName]}
+                  isChecked={currentDisplayedRaids[raidName]}
+                  onChange={newValue => {
+                    const newState = {
+                      ...currentDisplayedRaids,
+                      ...newValue
+                    };
+                    setRaidDisplayed(newState);
+                    // history.push({ search: qs.stringify(newState) });
+                  }}
+                />
+              </div>
+            )
+          )}
+        </div>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => setRaidDrawerVisibility(false)}
+          style={{ position: 'fixed', bottom: 7, right: 7 }}
+        >
+          Hide raid filters
+        </Button>
+      </Drawer>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => setRaidDrawerVisibility(true)}
+        style={{ position: 'fixed', bottom: 7, right: 7 }}
+      >
+        Show raid filters
+      </Button>
     </div>
   );
 }

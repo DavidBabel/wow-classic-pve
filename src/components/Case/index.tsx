@@ -8,8 +8,8 @@ const killAlliance = `${baseUrl}/killAlliance.gif`;
 const killHorde = `${baseUrl}/killHorde.gif`;
 const nokill = `${baseUrl}/nokill.gif`;
 const fkill = `${baseUrl}/fkill.gif`;
-const fkillHorde = `${baseUrl}/fkillHorde.gif`;
-const fkillAlliance = `${baseUrl}/fkillAlliance.gif`;
+export const fkillHorde = `${baseUrl}/fkillHorde.gif`;
+export const fkillAlliance = `${baseUrl}/fkillAlliance.gif`;
 
 interface Props {
   isFirst?: boolean;

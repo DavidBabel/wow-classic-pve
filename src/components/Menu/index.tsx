@@ -1,16 +1,20 @@
 import React from 'react';
 import {
   Drawer,
-  Button,
   ListItem,
   ListItemText,
   ListItemIcon,
   List,
-  Divider,
-  Typography,
-  Popover
+  Divider
 } from '@material-ui/core';
-import { MenuIcon, AddGuild, AddServer, GridPlus, HelpIcon } from './icons';
+import {
+  MenuIcon,
+  AddGuild,
+  AddServer,
+  GridPlus,
+  HelpIcon,
+  CloseMenuIcon
+} from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
 import { ModalCreateGuild } from '../ModalCreateGuild';
@@ -42,11 +46,18 @@ export function Menu({ database, currentServer }: Props) {
 
   return (
     <div style={{ display: 'inline-block' }}>
-      <MenuIcon onClick={() => setOpen(true)} />
+      <div style={{ position: 'fixed', top: 5, left: 5 }}>
+        <MenuIcon onClick={() => setOpen(true)} />
+      </div>
 
       <Drawer open={isOpen} onClose={() => setOpen(false)}>
+        <div
+          style={{ position: 'fixed', top: 5, left: 5, zIndex: 888888888888 }}
+        >
+          <CloseMenuIcon onClick={() => setOpen(false)} />
+        </div>
         <List style={{ width: 250 }}>
-          <h2 style={{ textAlign: 'center' }}>Update infos</h2>
+          <h2 style={{ textAlign: 'center', marginTop: 55 }}>Update infos</h2>
           <ListItem
             button
             onClick={() => {

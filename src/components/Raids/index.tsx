@@ -2,12 +2,33 @@ import React from 'react';
 import { RaidNames, Server, Guild } from '../../types/database.type';
 import { Case } from '../Case/index';
 import styles from './styles.module.scss';
+import { Modal, createStyles, makeStyles, Theme } from '@material-ui/core';
 
-interface Props {
-  currentServer: Server;
-  displayedGuilds: string[];
-  displayedRaids: RaidNames[];
+// TODO facto modal styles
+// TODO replace modal by dialog
+function getModalStyle() {
+  const top = 30;
+  const left = 45;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`
+  };
 }
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 4)
+    }
+  })
+);
 
 function sortGuilds(unsortedGuilds: Guild[]) {
   return unsortedGuilds.sort((a: any, b: any) => {
@@ -33,29 +54,54 @@ function sortGuilds(unsortedGuilds: Guild[]) {
   });
 }
 
+interface Props {
+  showEmptyGuilds: boolean;
+  currentServer: Server;
+  displayedGuilds: string[];
+  displayedRaids: RaidNames[];
+}
+
+function hasNoDown(g: Guild) {
+  return Object.keys(g.raids).reduce(
+    (bool: boolean, nextRaid: any) =>
+      bool ||
+      Object.keys((g.raids as any)[nextRaid]).reduce(
+        (bool2: boolean, nextBoss: string) =>
+          bool2 || Boolean((g.raids as any)[nextRaid][nextBoss]),
+        false
+      ),
+    false
+  );
+}
+
 export function Raids({
   currentServer,
   displayedGuilds,
-  displayedRaids
+  displayedRaids,
+  showEmptyGuilds
 }: Props) {
-  const unsortedGuilds: Guild[] = Object.keys(currentServer.guilds).reduce(
+  const classes = useStyles();
+  const [modalStyle] = React.useState(getModalStyle);
+
+  const unsortedRawGuilds: Guild[] = Object.keys(currentServer.guilds).reduce(
     (stack: Guild[], next: string) => {
       stack.push(currentServer.guilds[next]);
       return stack;
     },
     []
   );
+  const unsortedGuilds = showEmptyGuilds
+    ? unsortedRawGuilds
+    : unsortedRawGuilds.filter(hasNoDown);
   const sortedGuilds = sortGuilds(unsortedGuilds);
 
   if (!sortedGuilds[0]) {
     return (
-      <div>
-        Please create your first guild for this server, look at{' '}
-        <a href="https://github.com/DavidBabel/wow-classic-pve">
-          https://github.com/DavidBabel/wow-classic-pve
-        </a>
-        .
+      // <Modal open={true}>
+      <div style={modalStyle} className={classes.paper}>
+        Please create your first guild for this server, open the menu to do so.
       </div>
+      // </Modal>
     );
   }
   return (
