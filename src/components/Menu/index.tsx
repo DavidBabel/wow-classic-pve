@@ -40,18 +40,11 @@ export function Menu({ database, currentServer }: Props) {
 
   return (
     <div style={{ display: 'inline-block' }}>
-      <Button
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        color="default"
-        onClick={() => setOpen(true)}
-      >
-        <MenuIcon />
-      </Button>
+      <MenuIcon onClick={() => setOpen(true)} />
+
       <Drawer open={isOpen} onClose={() => setOpen(false)}>
-        <List>
-          <h2>Update infos</h2>
+        <List style={{ width: 250 }}>
+          <h2 style={{ textAlign: 'center' }}>Update infos</h2>
           <ListItem
             button
             onClick={() => {
