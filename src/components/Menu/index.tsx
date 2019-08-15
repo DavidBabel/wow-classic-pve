@@ -13,7 +13,8 @@ import {
   AddServer,
   GridPlus,
   HelpIcon,
-  CloseMenuIcon
+  CloseMenuIcon,
+  BugIcon
 } from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
@@ -111,6 +112,21 @@ export function Menu({ database, currentServer }: Props) {
               <HelpIcon />
             </ListItemIcon>
             <ListItemText primary="Help" />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              window.open(
+                'https://github.com/DavidBabel/wow-classic-pve/issues',
+                '_blank'
+              );
+            }}
+          >
+            <ListItemIcon>
+              <BugIcon />
+            </ListItemIcon>
+            <ListItemText primary="Report a bug" />
           </ListItem>
         </List>
       </Drawer>

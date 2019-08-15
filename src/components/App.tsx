@@ -142,8 +142,8 @@ export default function App({ match, history }: Props) {
             display: 'flex',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            paddingLeft: '15%',
-            width: '85%'
+            paddingLeft: 170,
+            paddingRight: 170
           }}
         >
           {(Object.keys(currentDisplayedRaids) as RaidNames[]).map(
