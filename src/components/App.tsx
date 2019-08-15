@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import rawDB from '../generatedDatabase.json';
 import { Database, Faction, RaidNames } from '../types/database.type';
-import ServerSelect from './ServerSelect/index';
+import ServerSelect from './SelectServer/index';
 // import { GuildKills } from './GuildKills/index';
 import { Checkbox } from './Checkbox/index';
 import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
@@ -10,6 +10,7 @@ import { getBoolObjectAsArray } from '../utils/object';
 import { cleanRaidTitles } from '../config/raidTitles';
 import { RouteComponentProps } from 'react-router-dom';
 import { Raids } from './Raids/index';
+import { Menu } from './Menu';
 // import qs from 'query-string';
 
 const typedDatabase = (rawDB as unknown) as Database;
@@ -17,12 +18,8 @@ const servers = Object.keys(typedDatabase);
 
 type Props = RouteComponentProps<{ serverName?: string }>;
 
-export default function App({
-  match: {
-    params: { serverName = '' }
-  },
-  history
-}: Props) {
+export default function App({ match, history }: Props) {
+  const serverName = (match && match.params && match.params.serverName) || '';
   const [currentServerName, setCurrentServerName] = useState(serverName);
   const [currentDisplayedFactions, setFactionDisplayed] = useState<
     DisplayedFactions
@@ -42,10 +39,12 @@ export default function App({
     naxx: false
   });
 
+  // TODO filtrer les guildes qui n'ont rien down et proposer un bouton pour les afficher
+
   const currentServer = typedDatabase[currentServerName];
 
   if (serverName === '') {
-    history.push('/Sulfuron');
+    history && history.push('/wow-classic-pve/Sulfuron');
   }
 
   if (!servers.includes(serverName)) {
@@ -68,6 +67,7 @@ export default function App({
 
   return (
     <div className="App">
+      <Menu database={typedDatabase} />
       <ServerSelect
         onChange={(newServer: string) => {
           setCurrentServerName(newServer);
