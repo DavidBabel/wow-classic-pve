@@ -109,9 +109,11 @@ export function Raids({
         );
       })}
       <div className={styles.guildNames}>
-        {sortedGuilds.map((g, index) => (
-          <div>{g.infos.cleanName}</div>
-        ))}
+        {sortedGuilds
+          .filter(g => displayedGuilds.includes(g.infos.cleanName))
+          .map(g => (
+            <div>{g.infos.cleanName}</div>
+          ))}
       </div>
     </div>
   );
