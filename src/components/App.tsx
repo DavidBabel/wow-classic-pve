@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import rawDB from '../generatedDatabase.json';
 import { Database, Faction, RaidNames } from '../types/database.type';
 import ServerSelect from './SelectServer/index';
-// import { GuildKills } from './GuildKills/index';
 import { Checkbox } from './Checkbox/index';
 import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
 import { getBoolObjectAsArray } from '../utils/object';
@@ -11,7 +10,6 @@ import { cleanRaidTitles } from '../config/raidTitles';
 import { RouteComponentProps } from 'react-router-dom';
 import { Raids } from './Raids/index';
 import { Menu } from './Menu';
-// import qs from 'query-string';
 
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
