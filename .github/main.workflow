@@ -1,4 +1,4 @@
-workflow "Deploy to Github Pages" {
+workflow "Validation" {
   on       = "push"
 
   resolves = [
