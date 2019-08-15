@@ -6,7 +6,9 @@ import {
   ListItemText,
   ListItemIcon,
   List,
-  Divider
+  Divider,
+  Typography,
+  Popover
 } from '@material-ui/core';
 import { MenuIcon, AddGuild, AddServer, GridPlus, HelpIcon } from './icons';
 
