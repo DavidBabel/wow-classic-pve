@@ -44,7 +44,7 @@ export default function App({ match, history }: Props) {
   const currentServer = typedDatabase[currentServerName];
 
   if (serverName === '') {
-    history && history.push('/Sulfuron');
+    history && history.push('/wow-classic-pve/Sulfuron');
   }
 
   if (!servers.includes(serverName)) {
