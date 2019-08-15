@@ -76,44 +76,44 @@ export function Menu({ database }: Props) {
       <Drawer open={isOpen} onClose={() => setOpen(false)}>
         <List>
           <h2>Update infos</h2>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              console.log('coucou');
+            }}
+          >
             <ListItemIcon>
               <GridPlus />
             </ListItemIcon>
-            <ListItemText
-              primary="Add a boss kill"
-              onClick={() => {
-                setOpen(false);
-                console.log('coucou');
-              }}
-            />
+            <ListItemText primary="Add a boss kill" />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              console.log('coucou');
+            }}
+          >
             <ListItemIcon>
               <AddGuild />
             </ListItemIcon>
-            <ListItemText
-              primary="Add your guild"
-              onClick={() => {
-                setOpen(false);
-                console.log('coucou');
-              }}
-            />
+            <ListItemText primary="Add your guild" />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              setModalCreateServerVisibility(true);
+            }}
+          >
             <ListItemIcon>
               <AddServer />
             </ListItemIcon>
-            <ListItemText
-              primary="Add your Server"
-              onClick={() => {
-                setOpen(false);
-                setModalCreateServerVisibility(true);
-              }}
-            />
+            <ListItemText primary="Add your Server" />
           </ListItem>
         </List>
       </Drawer>
