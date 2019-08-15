@@ -1,6 +1,6 @@
 workflow "Deploy to Github Pages" {
-  on = "push"
   resolves = ["Deploy to gh-pages"]
+  on = "push"
 }
 
 action "master branch only" {
