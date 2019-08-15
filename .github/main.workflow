@@ -10,7 +10,8 @@ action "Setup Node.js" {
   uses = "actions/bin/sh@master"
 
   args = [
-    "wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash",
+    "sudo apt-get install curl"
+    "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash",
     "nvm install 12"
   ]
 }
