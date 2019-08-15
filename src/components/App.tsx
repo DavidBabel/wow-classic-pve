@@ -67,7 +67,7 @@ export default function App({ match, history }: Props) {
 
   return (
     <div className="App">
-      <Menu database={typedDatabase} />
+      <Menu database={typedDatabase} currentServer={currentServerName} />
       <ServerSelect
         onChange={(newServer: string) => {
           setCurrentServerName(newServer);

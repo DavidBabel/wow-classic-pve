@@ -1,5 +1,5 @@
 const CONFIG = {
-  appPath: process.env.APP_PATH || '',
+  appPath: process.env.PUBLIC_URL || '',
   skin: 'default'
 };
 

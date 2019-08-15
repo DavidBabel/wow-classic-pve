@@ -10,18 +10,11 @@ import {
   InputLabel,
   Button
 } from '@material-ui/core';
-// import Radio, { RadioProps } from '@material-ui/core/Radio';
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import { Database } from '../../types/database.type';
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+import { openGithub } from '../../utils/openGithub';
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 30;
+  const left = 45;
 
   return {
     top: `${top}%`,
@@ -46,7 +39,6 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  database: Database;
 }
 
 export function ModalCreateServer({ isOpen, onClose }: Props) {
@@ -57,22 +49,15 @@ export function ModalCreateServer({ isOpen, onClose }: Props) {
   const [serverType, setServerType] = React.useState<string>();
   const [serverLang, setServerLang] = React.useState<string>();
 
-  function openGithub() {
-    const content = {
-      lang: serverLang,
-      type: serverType
-    };
-    let url = `https://github.com/DavidBabel/wow-classic-pve/new/master/?filename=servers/${serverName}/@server-infos.json&value=${encodeURIComponent(
-      JSON.stringify(content, null, 2)
-    )}`;
-
-    window.open(url, '_blank');
-  }
+  const fileContent = {
+    lang: serverLang,
+    type: serverType
+  };
 
   return (
     <Modal
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
+      // aria-labelledby="simple-modal-title"
+      // aria-describedby="simple-modal-description"
       open={isOpen}
       onClose={onClose}
     >
@@ -147,9 +132,11 @@ export function ModalCreateServer({ isOpen, onClose }: Props) {
               variant="contained"
               color="primary"
               disabled={!serverLang || !serverType || !serverName}
-              onClick={openGithub}
+              onClick={() =>
+                openGithub(serverName!, '@server-infos.json', fileContent)
+              }
             >
-              Make request to add my server
+              Make a request to create my server
             </Button>
           </div>
         </form>
