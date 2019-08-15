@@ -1,0 +1,31 @@
+$bossNameWidth: 250px;
+
+.Raids {
+  .raidBlock {
+    padding-top: 16px;
+    .bossLine {
+      div {
+        display: inline-block;
+      }
+      height: 32px;
+    }
+
+    .bossName {
+      width: $bossNameWidth;
+      text-align: right;
+      vertical-align: 10px;
+      padding: 0 20px;
+    }
+  }
+  .guildNames {
+    padding-left: $bossNameWidth;
+    div {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      transform: translateX(-5px) translateY(14px) rotate(305deg);
+      text-align: right;
+      direction: rtl;
+    }
+  }
+}
