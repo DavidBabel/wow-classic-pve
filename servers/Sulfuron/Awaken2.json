@@ -1,7 +1,7 @@
 {
   "infos": {
-    "cleanName": "Awaken",
-    "faction": "horde",
+    "cleanName": "Awaken2",
+    "faction": "alliance",
     "gm": "Devilhunter",
     "discord": "",
     "site": ""
@@ -11,9 +11,15 @@
       "Azuregos": false,
       "Kazzak": false
     },
+    "wb2": {
+      "Emeriss": false,
+      "Lethon": false,
+      "Ysondre": false,
+      "Taerar": false
+    },
     "mc": {
       "Lucifron": "2019-08-14",
-      "Magmadar": false,
+      "Magmadar": "2019-08-14",
       "Gehennas": false,
       "Garr": false,
       "Shazzrah": false,

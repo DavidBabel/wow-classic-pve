@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import rawDB from '../generatedDatabase.json';
 import { Database, Faction, RaidNames } from '../types/database.type';
 import ServerSelect from './ServerSelect/index';
-import { GuildKills } from './GuildKills/index';
+// import { GuildKills } from './GuildKills/index';
 import { Checkbox } from './Checkbox/index';
 import { DisplayedRaids, DisplayedFactions } from '../types/states.type';
 import { getBoolObjectAsArray } from '../utils/object';
 import { cleanRaidTitles } from '../config/raidTitles';
 import { RouteComponentProps } from 'react-router-dom';
 import { Raids } from './Raids/index';
+// import qs from 'query-string';
 
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
@@ -31,6 +32,7 @@ export default function App({
   });
   const [currentDisplayedRaids, setRaidDisplayed] = useState<DisplayedRaids>({
     wb: true,
+    wb2: true,
     mc: true,
     ony: true,
     bwl: false,
@@ -95,16 +97,18 @@ export default function App({
             name={raidName}
             label={cleanRaidTitles[raidName]}
             isChecked={currentDisplayedRaids[raidName]}
-            onChange={newValue =>
-              setRaidDisplayed({
+            onChange={newValue => {
+              const newState = {
                 ...currentDisplayedRaids,
                 ...newValue
-              })
-            }
+              };
+              setRaidDisplayed(newState);
+              // history.push({ search: qs.stringify(newState) });
+            }}
           />
         )
       )}
-      <div>
+      {/* <div>
         {guildsNames.map(guildDetail => (
           <GuildKills
             detail={currentServer.guilds[guildDetail]}
@@ -113,17 +117,15 @@ export default function App({
             )}
           />
         ))}
-      </div>
+      </div> */}
       <div>
-        {guildsNames.map(guildDetail => (
-          <Raids
-            currentServer={currentServer}
-            displayedGuilds={guildsNames}
-            displayedRaids={getBoolObjectAsArray<RaidNames>(
-              currentDisplayedRaids
-            )}
-          />
-        ))}
+        <Raids
+          currentServer={currentServer}
+          displayedGuilds={guildsNames}
+          displayedRaids={getBoolObjectAsArray<RaidNames>(
+            currentDisplayedRaids
+          )}
+        />
       </div>
     </div>
   );

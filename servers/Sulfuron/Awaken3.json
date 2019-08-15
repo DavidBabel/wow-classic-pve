@@ -1,8 +1,8 @@
 {
   "infos": {
-    "cleanName": "AnotherGuild",
-    "faction": "horde",
-    "gm": "unknown",
+    "cleanName": "Awaken3",
+    "faction": "alliance",
+    "gm": "Devilhunter",
     "discord": "",
     "site": ""
   },
@@ -21,7 +21,7 @@
       "Lucifron": "2019-08-14",
       "Magmadar": false,
       "Gehennas": false,
-      "Garr": false,
+      "Garr": "2019-08-14",
       "Shazzrah": false,
       "Baron Geddon": false,
       "Sulfuron Harbinger": false,

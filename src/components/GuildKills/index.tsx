@@ -25,7 +25,7 @@ export function GuildKills({
   };
   return (
     <div className={styles.GuildKills}>
-      {/* {infos.cleanName} */}
+      {infos.cleanName}
       {raidNames
         .filter(raidName => displayedRaids.includes(raidName))
         .reverse()

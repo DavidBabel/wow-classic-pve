@@ -2,16 +2,25 @@ export type DownDate = string | boolean;
 
 export type Faction = 'horde' | 'alliance';
 
+export interface Database {
+  [server: string]: Server;
+}
+
 export type Server = {
   infos: {
     lang: string;
     type: string;
   };
-  guilds: { [guildName: string]: Guild };
+  guilds: Guilds;
 };
-export interface Database {
-  [server: string]: Server;
+
+export type Guilds = { [guildName: string]: Guild };
+
+export interface Guild {
+  infos: GuildInfos;
+  raids: Raids;
 }
+
 export interface GuildInfos {
   cleanName: string;
   faction: Faction;
@@ -24,6 +33,12 @@ export interface Raids {
   wb: {
     Azuregos: DownDate;
     Kazzak: DownDate;
+  };
+  wb2: {
+    Emeriss: DownDate;
+    Lethon: DownDate;
+    Ysondre: DownDate;
+    Taerar: DownDate;
   };
   mc: {
     Lucifron: DownDate;
@@ -100,16 +115,11 @@ export interface Raids {
 }
 
 export type RaidNames = keyof Raids;
-export type BossWB = keyof Raids['wb'];
-export type BossMC = keyof Raids['mc'];
-export type BossOny = keyof Raids['ony'];
-export type BossBwl = keyof Raids['bwl'];
-export type BossZG = keyof Raids['zg'];
-export type BossAQ20 = keyof Raids['aq20'];
-export type BossAQ40 = keyof Raids['aq40'];
-export type BossNaxx = keyof Raids['naxx'];
-
-export interface Guild {
-  infos: GuildInfos;
-  raids: Raids;
-}
+// export type BossWB = keyof Raids['wb'];
+// export type BossMC = keyof Raids['mc'];
+// export type BossOny = keyof Raids['ony'];
+// export type BossBwl = keyof Raids['bwl'];
+// export type BossZG = keyof Raids['zg'];
+// export type BossAQ20 = keyof Raids['aq20'];
+// export type BossAQ40 = keyof Raids['aq40'];
+// export type BossNaxx = keyof Raids['naxx'];
