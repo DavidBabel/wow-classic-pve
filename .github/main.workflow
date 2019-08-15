@@ -11,8 +11,7 @@ workflow "Deploy to Github Pages" {
 # }
 action "Install dependencies" {
   uses = "docker://node:12-alpine"
-  runs = "yarn"
-  args = "install"
+  runs = "yarn install"
 }
 
 action "Build Database" {
