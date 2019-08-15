@@ -2,6 +2,7 @@ import { RaidNames } from '../types/database.type';
 
 export const cleanRaidTitles: { [raidName in RaidNames]: string } = {
   wb: 'World Bosses',
+  drakes: 'Emerald Dragons',
   mc: 'Molten Core',
   ony: 'Onyxia Lair',
   bwl: 'Blackwing Lair',

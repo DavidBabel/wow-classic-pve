@@ -34,7 +34,7 @@ export interface Raids {
     Azuregos: DownDate;
     Kazzak: DownDate;
   };
-  wb2: {
+  drakes: {
     Emeriss: DownDate;
     Lethon: DownDate;
     Ysondre: DownDate;

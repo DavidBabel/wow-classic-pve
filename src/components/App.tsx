@@ -32,7 +32,7 @@ export default function App({
   });
   const [currentDisplayedRaids, setRaidDisplayed] = useState<DisplayedRaids>({
     wb: true,
-    wb2: true,
+    drakes: false,
     mc: true,
     ony: true,
     bwl: false,

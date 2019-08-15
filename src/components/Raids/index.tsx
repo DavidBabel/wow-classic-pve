@@ -47,12 +47,20 @@ export function Raids({
   );
   const sortedGuilds = sortGuilds(unsortedGuilds);
 
+  if (!sortedGuilds[0]) {
+    return (
+      <div>
+        Please create your first guild for this server, look at{' '}
+        <a href="https://github.com/DavidBabel/wow-classic-pve">
+          https://github.com/DavidBabel/wow-classic-pve
+        </a>
+        .
+      </div>
+    );
+  }
   return (
     <div className={styles.Raids}>
       {displayedRaids.reverse().map((raidName: RaidNames) => {
-        if (!sortedGuilds[0]) {
-          return '';
-        }
         const bosses = Object.keys(sortedGuilds[0].raids[raidName]);
         const foundFirsts = bosses.reduce((stack: any, next) => {
           stack[next] = {
