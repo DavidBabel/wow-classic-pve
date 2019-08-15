@@ -12,7 +12,7 @@ action "Deploy to gh-pages" {
   uses = "JamesIves/github-pages-deploy-action@master"
   env = {
     BRANCH = "gh-pages"
-    BUILD_SCRIPT = "yarn install && yarn build-db && CI=true yarn test && yarn build"
+    BUILD_SCRIPT = "yarn install && CI=true yarn test && yarn build-db && yarn build"
     FOLDER = "build"
   }
   secrets = ["ACCESS_TOKEN"]
