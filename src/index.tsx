@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
 import CONFIG from './config';
 
+// Router fix : https://github.com/facebook/create-react-app/issues/1765
+
 ReactDOM.render(
   <BrowserRouter basename={CONFIG.appPath}>
     <Route path="/:serverName" exact component={App} />

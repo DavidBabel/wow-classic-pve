@@ -10,11 +10,16 @@ import {
   ListItemIcon,
   // MenuItem,
   List,
-  Divider
+  Divider,
+  Typography,
+  Popover
 } from '@material-ui/core';
-import { MenuIcon, AddGuild, AddServer, GridPlus } from './icons';
+import { MenuIcon, AddGuild, AddServer, GridPlus, HelpIcon } from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
+import { ModalCreateGuild } from '../ModalCreateGuild';
+import { ModalAddKillInfo } from '../ModalAddKillInfo';
+import { ModalHelp } from '../ModalHelp';
 import { Database } from '../../types/database.type';
 
 // const StyledMenu = withStyles({
@@ -50,13 +55,24 @@ import { Database } from '../../types/database.type';
 
 interface Props {
   database: Database;
+  currentServer: string;
 }
 
-export function Menu({ database }: Props) {
+export function Menu({ database, currentServer }: Props) {
   const [isOpen, setOpen] = React.useState(false);
+  const [isModalInfoKillVisible, setModalInfoKillVisibility] = React.useState(
+    false
+  );
+
+  const [isModalHelpVisible, setModalHelpVisibility] = React.useState(false);
   const [
     isModalCreateServerVisible,
     setModalCreateServerVisibility
+  ] = React.useState(false);
+
+  const [
+    isModalCreateGuildVisible,
+    setModalCreateGuildVisibility
   ] = React.useState(false);
 
   return (
@@ -76,95 +92,78 @@ export function Menu({ database }: Props) {
       <Drawer open={isOpen} onClose={() => setOpen(false)}>
         <List>
           <h2>Update infos</h2>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              setModalInfoKillVisibility(true);
+            }}
+          >
             <ListItemIcon>
               <GridPlus />
             </ListItemIcon>
-            <ListItemText
-              primary="Add a boss kill"
-              onClick={() => {
-                setOpen(false);
-                console.log('coucou');
-              }}
-            />
+            <ListItemText primary="Add a boss kill ?" />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              setModalCreateGuildVisibility(true);
+            }}
+          >
             <ListItemIcon>
               <AddGuild />
             </ListItemIcon>
-            <ListItemText
-              primary="Add your guild"
-              onClick={() => {
-                setOpen(false);
-                console.log('coucou');
-              }}
-            />
+            <ListItemText primary="Add your guild" />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              setModalCreateServerVisibility(true);
+            }}
+          >
             <ListItemIcon>
               <AddServer />
             </ListItemIcon>
-            <ListItemText
-              primary="Add your Server"
-              onClick={() => {
-                setOpen(false);
-                setModalCreateServerVisibility(true);
-              }}
-            />
+            <ListItemText primary="Add your Server" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              setModalHelpVisibility(true);
+            }}
+          >
+            <ListItemIcon>
+              <HelpIcon />
+            </ListItemIcon>
+            <ListItemText primary="Help" />
           </ListItem>
         </List>
       </Drawer>
-      {/* <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <StyledMenuItem>
-          <ListItemIcon>
-            <AddGuild />
-          </ListItemIcon>
-          <ListItemText
-            primary="Add your guild"
-            onClick={() => {
-              handleClose();
-              console.log('coucou');
-            }}
-          />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <AddServer />
-          </ListItemIcon>
-          <ListItemText
-            primary="Add your Server"
-            onClick={() => {
-              handleClose();
-              setModalCreateServerVisibility(true);
-            }}
-          />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <GridPlus />
-          </ListItemIcon>
-          <ListItemText
-            primary="Add a boss kill"
-            onClick={() => {
-              handleClose();
-              console.log('coucou');
-            }}
-          />
-        </StyledMenuItem>
-      </StyledMenu> */}
       <ModalCreateServer
-        database={database}
         isOpen={isModalCreateServerVisible}
         onClose={() => setModalCreateServerVisibility(false)}
+      />
+      <ModalCreateGuild
+        serverName={currentServer}
+        isOpen={isModalCreateGuildVisible}
+        onClose={() => setModalCreateGuildVisibility(false)}
+      />
+      <ModalAddKillInfo
+        isOpen={isModalInfoKillVisible}
+        onClose={() => setModalInfoKillVisibility(false)}
+      />
+      <ModalHelp
+        isOpen={isModalHelpVisible}
+        onClose={() => setModalHelpVisibility(false)}
       />
     </div>
   );

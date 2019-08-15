@@ -3,7 +3,7 @@ import { isGuildInfosValid, isServerValid } from './utils/checkDatabase';
 import * as colors from 'colors/safe';
 
 const guildInfosRef = JSON.parse(
-  fs.readFileSync(`bin/utils/guildReference.json`, 'utf8').toString()
+  fs.readFileSync(`src/utils/guildReference.json`, 'utf8').toString()
 );
 
 const servers = fs.readdirSync('servers').filter(f => !f.endsWith('.json'));
