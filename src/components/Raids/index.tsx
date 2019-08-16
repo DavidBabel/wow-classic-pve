@@ -2,7 +2,8 @@ import React from 'react';
 import { RaidNames, Server, Guild } from '../../types/database.type';
 import { Case } from '../Case/index';
 import styles from './styles.module.scss';
-import { Modal, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { ModalAddKill } from '../ModalAddKill';
 
 // TODO facto modal styles
 // TODO replace modal by dialog
@@ -54,13 +55,6 @@ function sortGuilds(unsortedGuilds: Guild[]) {
   });
 }
 
-interface Props {
-  showEmptyGuilds: boolean;
-  currentServer: Server;
-  displayedGuilds: string[];
-  displayedRaids: RaidNames[];
-}
-
 function hasNoDown(g: Guild) {
   return Object.keys(g.raids).reduce(
     (bool: boolean, nextRaid: any) =>
@@ -74,14 +68,27 @@ function hasNoDown(g: Guild) {
   );
 }
 
+interface Props {
+  showEmptyGuilds: boolean;
+  currentServer: Server;
+  currentServerName: string;
+  displayedGuilds: string[];
+  displayedRaids: RaidNames[];
+}
+
 export function Raids({
   currentServer,
+  currentServerName,
   displayedGuilds,
   displayedRaids,
   showEmptyGuilds
 }: Props) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
+  const [isModalOpen, setModalOpen] = React.useState(false);
+  const [currentGuildName, setCurrentGuildName] = React.useState('');
+  const [currentRaidName, setCurrentRaidName] = React.useState<RaidNames>();
+  const [currentBossName, setCurrentBossName] = React.useState('');
 
   const unsortedRawGuilds: Guild[] = Object.keys(currentServer.guilds).reduce(
     (stack: Guild[], next: string) => {
@@ -145,6 +152,13 @@ export function Raids({
                         date={bossValue}
                         isFirst={isFirstFaction}
                         isServerFirst={isFirstServer}
+                        onClick={() => {
+                          if (bossValue) return;
+                          setCurrentGuildName(g.infos.cleanName);
+                          setCurrentRaidName(raidName);
+                          setCurrentBossName(b);
+                          setModalOpen(true);
+                        }}
                       />
                     );
                   })
@@ -161,6 +175,15 @@ export function Raids({
             <div>{g.infos.cleanName}</div>
           ))}
       </div>
+      <ModalAddKill
+        serverInfos={currentServer}
+        serverName={currentServerName}
+        guildName={currentGuildName}
+        raidName={currentRaidName!}
+        bossName={currentBossName}
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+      />
     </div>
   );
 }

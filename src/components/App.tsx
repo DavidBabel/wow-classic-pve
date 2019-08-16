@@ -18,7 +18,6 @@ import {
   Checkbox as MaterialCheckbox,
   FormControlLabel
 } from '@material-ui/core';
-import { display } from '@material-ui/system';
 
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
@@ -75,8 +74,8 @@ export default function App({ match, history }: Props) {
   );
 
   return (
-    <div style={{ marginTop: 100 }}>
-      <Menu database={typedDatabase} currentServer={currentServerName} />
+    <div style={{ marginTop: 100, marginBottom: 150 }}>
+      <Menu currentServer={currentServerName} />
       <div style={{ position: 'fixed', right: 0, top: 0, display: 'flex' }}>
         <div style={{ margin: 10 }}>
           <FormControlLabel
@@ -130,6 +129,7 @@ export default function App({ match, history }: Props) {
         <Raids
           showEmptyGuilds={showEmptyGuilds}
           currentServer={currentServer}
+          currentServerName={currentServerName}
           displayedGuilds={guildsNames}
           displayedRaids={getBoolObjectAsArray<RaidNames>(
             currentDisplayedRaids

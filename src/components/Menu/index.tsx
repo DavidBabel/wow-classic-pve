@@ -21,14 +21,12 @@ import { ModalCreateServer } from '../ModalCreateServer';
 import { ModalCreateGuild } from '../ModalCreateGuild';
 import { ModalAddKillInfo } from '../ModalAddKillInfo';
 import { ModalHelp } from '../ModalHelp';
-import { Database } from '../../types/database.type';
 
 interface Props {
-  database: Database;
   currentServer: string;
 }
 
-export function Menu({ database, currentServer }: Props) {
+export function Menu({ currentServer }: Props) {
   const [isOpen, setOpen] = React.useState(false);
   const [isModalInfoKillVisible, setModalInfoKillVisibility] = React.useState(
     false
