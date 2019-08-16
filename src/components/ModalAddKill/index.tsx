@@ -124,9 +124,10 @@ export function ModalAddKill({
               color="primary"
               disabled={!date}
               onClick={() => {
-                const fileContent = serverInfos.guilds[guildName];
-                // TODO fix that shit
-                (fileContent.raids as any)[raidName][bossName] = date!.replace(
+                const fileContent = JSON.parse(
+                  JSON.stringify(serverInfos.guilds[guildName])
+                );
+                fileContent.raids[raidName][bossName] = date!.replace(
                   ':00.000Z',
                   ''
                 );
