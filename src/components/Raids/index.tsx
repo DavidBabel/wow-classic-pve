@@ -129,7 +129,19 @@ export function Raids({
           <div className={styles.raidBlock}>
             {bosses.reverse().map((b: string) => (
               <div className={styles.bossLine}>
-                <div className={styles.bossName}>{b}</div>
+                <div className={styles.bossName}>
+                  <a
+                    style={{
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontWeight: 'bold'
+                    }}
+                    href={`https://classic.wowhead.com/search?q=${b}`}
+                    target="_href"
+                  >
+                    {b}
+                  </a>
+                </div>
                 {sortedGuilds
                   .map(g => {
                     const bossValue = (g.raids[raidName] as any)[b];

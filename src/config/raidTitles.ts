@@ -4,10 +4,10 @@ export const cleanRaidTitles: { [raidName in RaidNames]: string } = {
   wb: 'World Bosses',
   drakes: 'Emerald Dragons',
   mc: 'Molten Core',
-  ony: 'Onyxia Lair',
+  ony: "Onyxia's Lair",
   bwl: 'Blackwing Lair',
-  zg: 'Zul Gurub',
-  aq20: 'Ahn Quiraj 20',
-  aq40: 'Ahn Quiraj 40',
+  zg: "Zul'Gurub",
+  aq20: "Ahn'Qiraj Ruins",
+  aq40: "Ahn'Qiraj Temple",
   naxx: 'Naxxramas'
 };
