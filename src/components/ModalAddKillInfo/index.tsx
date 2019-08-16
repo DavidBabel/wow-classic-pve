@@ -45,7 +45,7 @@ export function ModalAddKillInfo({ isOpen, onClose }: Props) {
     >
       <div style={modalStyle} className={classes.paper}>
         <h2>Hey</h2>
-        To update the kill of your guild, just click on any case
+        To update the kill of your guild, just click on any empty case
         <img src="any" alt="" />
       </div>
     </Modal>
