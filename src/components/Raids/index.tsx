@@ -4,6 +4,7 @@ import { Case } from '../Case/index';
 import styles from './styles.module.scss';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { ModalAddKill } from '../ModalAddKill';
+import { deepClone } from '../../utils/object';
 
 // TODO facto modal styles
 // TODO replace modal by dialog
@@ -111,9 +112,10 @@ export function Raids({
       // </Modal>
     );
   }
+  const reversedDisplayedRaids = deepClone(displayedRaids).reverse();
   return (
     <div className={styles.Raids}>
-      {displayedRaids.reverse().map((raidName: RaidNames) => {
+      {reversedDisplayedRaids.map((raidName: RaidNames) => {
         const bosses = Object.keys(sortedGuilds[0].raids[raidName]);
         const foundFirsts = bosses.reduce((stack: any, next) => {
           stack[next] = {

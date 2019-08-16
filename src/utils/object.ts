@@ -11,3 +11,7 @@ export function getBoolObjectAsArray<T>(anyBooleanObject: {
     []
   );
 }
+
+export function deepClone<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}

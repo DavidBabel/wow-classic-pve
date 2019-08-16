@@ -11,6 +11,7 @@ import {
   MaterialUiPickersDate
 } from '@material-ui/pickers';
 import { openGithub } from '../../utils/openGithub';
+import { deepClone } from '../../utils/object';
 
 function getModalStyle() {
   const top = 30;
@@ -124,8 +125,9 @@ export function ModalAddKill({
               color="primary"
               disabled={!date}
               onClick={() => {
-                const fileContent = JSON.parse(
-                  JSON.stringify(serverInfos.guilds[guildName])
+                // TODO fix this type
+                const fileContent = deepClone<any>(
+                  serverInfos.guilds[guildName]
                 );
                 fileContent.raids[raidName][bossName] = date!.replace(
                   ':00.000Z',
