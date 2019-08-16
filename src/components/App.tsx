@@ -24,6 +24,8 @@ import {
 // TODO use "ranking" as name of the app
 // TODO add raid icon to display
 // TODO : make app text not selectable ?
+// TODO : onclick for down, fill in gray the case you just click on
+// TODO : clear cached file debug button
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
