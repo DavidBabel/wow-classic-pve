@@ -4,6 +4,7 @@ If you are submitting a boss kill, please provide the following rapid proofs :
 
 In any cases, your link/screenshot **must show the complete date AND hour**.
 It can be in the chat, or on the calendar.
+This is especially important for first kills.
 
 Then you have to meet **ONE OF** this conditions :
 
