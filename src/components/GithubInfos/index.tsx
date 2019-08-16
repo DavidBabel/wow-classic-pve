@@ -6,7 +6,11 @@ export function GithubInfos() {
     <DialogContentText>
       <h5 style={{ marginBottom: 8, marginTop: 4, color: '#d0d0d0' }}>
         First you need to have a{' '}
-        <a href="https://github.com/" target="_href">
+        <a
+          style={{ color: '#c0c0c0', fontWeight: 'bold' }}
+          href="https://github.com/"
+          target="_href"
+        >
           GitHub account
         </a>{' '}
         (it's free).
