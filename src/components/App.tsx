@@ -96,7 +96,7 @@ export default function App({ match, history }: Props) {
         />
       </div>
       <div style={{ position: 'fixed', right: 0, top: 0, display: 'flex' }}>
-        <div style={{ margin: 10 }}>
+        <div style={{ margin: 10, marginTop: 21, marginRight: 14 }}>
           {(Object.keys(currentDisplayedFactions) as Faction[]).map(
             (factionName: Faction) => (
               <Checkbox
