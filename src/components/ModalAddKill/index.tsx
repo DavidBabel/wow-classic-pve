@@ -1,40 +1,23 @@
 import React from 'react';
 import 'date-fns';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Modal, TextField, Grid, Button } from '@material-ui/core';
+import {
+  TextField,
+  DialogContent,
+  DialogContentText,
+  List
+} from '@material-ui/core';
 import { Server, RaidNames } from '../../types/database.type';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
-  KeyboardDatePicker,
-  MaterialUiPickersDate
+  KeyboardDatePicker
 } from '@material-ui/pickers';
 import { openGithub } from '../../utils/openGithub';
+import { deepClone } from '../../utils/object';
+import { GithubInfos } from '../GithubInfos';
 
-function getModalStyle() {
-  const top = 30;
-  const left = 45;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 4)
-    }
-  })
-);
+import { Dialog, DialogActions, DialogTitle, ListItem } from '../Dialog';
 
 interface Props {
   isOpen: boolean;
@@ -46,6 +29,8 @@ interface Props {
   bossName: string;
 }
 
+const required = <span style={{ color: 'red', fontWeight: 'bold' }}>*</span>;
+
 export function ModalAddKill({
   isOpen,
   onClose,
@@ -55,89 +40,75 @@ export function ModalAddKill({
   raidName,
   bossName
 }: Props) {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [date, setDate] = React.useState<string>();
+  const [date, setDate] = React.useState(new Date());
+
+  let stringDate: string;
+  try {
+    stringDate = date.toISOString().replace(/:[0-9]{2}.[0-9]{3}Z/, '');
+  } catch (error) {
+    stringDate = '';
+  }
 
   return (
-    <Modal
-      // aria-labelledby="simple-modal-title"
-      // aria-describedby="simple-modal-description"
-      open={isOpen}
-      onClose={onClose}
-    >
-      <div style={modalStyle} className={classes.paper}>
-        <h2>Please fill the form</h2>
-        <h5>
-          First you need to have a{' '}
-          <a href="https://github.com/" target="_href">
-            GitHub account
-          </a>{' '}
-          (it's free).
-        </h5>
-        <form noValidate autoComplete="off">
-          <TextField
-            label="Server"
-            value={serverName}
-            disabled
-            margin="normal"
-          />
-          <TextField
-            label="Guild name"
-            value={guildName}
-            disabled
-            margin="normal"
-          />
-          <TextField
-            label="Boss name"
-            value={bossName}
-            disabled
-            margin="normal"
-          />
+    <Dialog open={isOpen} onClose={onClose}>
+      <DialogTitle>Please fill the form {required}</DialogTitle>
+      <DialogContent>
+        <GithubInfos />
+        <List>
+          <ListItem>
+            <TextField label="Server" value={serverName} disabled />
+            <TextField label="Guild name" value={guildName} disabled />
+            <TextField label="Boss name" value={bossName} disabled />
+          </ListItem>
+
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
+            <ListItem>
               <KeyboardDatePicker
                 margin="normal"
-                label="Date picker dialog"
+                label="Date of kill"
                 format="yyyy/MM/dd"
                 value={date}
-                onChange={(date: any) => setDate(new Date(date).toISOString())}
+                onChange={(date: any) => date && setDate(date)}
                 KeyboardButtonProps={{
                   'aria-label': 'change date'
                 }}
               />
               <KeyboardTimePicker
                 margin="normal"
-                label="Time picker"
+                label="Approximative time of kill"
                 value={date}
-                onChange={(date: any) => setDate(new Date(date).toISOString())}
+                onChange={(date: any) => date && setDate(date)}
                 KeyboardButtonProps={{
                   'aria-label': 'change time'
                 }}
               />
-            </Grid>
+            </ListItem>
           </MuiPickersUtilsProvider>
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={!date}
-              onClick={() => {
-                const fileContent = serverInfos.guilds[guildName];
-                // TODO fix that shit
-                (fileContent.raids as any)[raidName][bossName] = date!.replace(
-                  ':00.000Z',
-                  ''
-                );
-                openGithub(serverName, guildName + '.json', fileContent);
-              }}
-            >
-              Make a request to add my kill
-            </Button>
-          </div>
-        </form>
-      </div>
-    </Modal>
+          <ListItem>
+            <TextField
+              label="UTC Date Preview"
+              value={stringDate}
+              disabled
+              margin="normal"
+            />
+          </ListItem>
+        </List>
+        <DialogContentText>
+          <p>{required} Note that you will need to provide proof</p>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions
+        disabled={!stringDate}
+        onClose={onClose}
+        onClick={() => {
+          // TODO fix this type
+          const fileContent = deepClone<any>(serverInfos.guilds[guildName]);
+          fileContent.raids[raidName][bossName] = stringDate;
+          openGithub(serverName, guildName + '.json', fileContent);
+        }}
+      >
+        Make a request to add my boss kill
+      </DialogActions>
+    </Dialog>
   );
 }

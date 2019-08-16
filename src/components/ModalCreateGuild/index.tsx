@@ -5,12 +5,15 @@ import {
   TextField,
   Modal,
   FormControlLabel,
-  Button
+  Button,
+  Grid,
+  FormLabel
 } from '@material-ui/core';
 
 import { openGithub } from '../../utils/openGithub';
 
 import guildRef from '../../utils/guildReference.json';
+import { GithubInfos } from '../GithubInfos';
 
 function getModalStyle() {
   const top = 45;
@@ -74,90 +77,87 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
     >
       <div style={modalStyle} className={classes.paper}>
         <h2>Please fill the form</h2>
-        <h5>
-          First you need to have a{' '}
-          <a href="https://github.com/" target="_href">
-            GitHub account
-          </a>{' '}
-          (it's free).
-        </h5>
+        <GithubInfos />
         <form noValidate autoComplete="off">
-          <TextField
-            label="Server"
-            value={serverName}
-            disabled
-            margin="normal"
-          />
-          <TextField
-            label="Guild name"
-            value={guildName}
-            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              setGuildName(event.target.value)
-            }
-            margin="normal"
-          />
-          <TextField
-            label="GM name"
-            value={guildGMName}
-            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              setGuildGMName(event.target.value)
-            }
-            margin="normal"
-          />
-          <div>
-            <FormControlLabel
-              control={
-                <Radio
-                  checked={guildFaction === 'horde'}
-                  onClick={() => setGuildFaction('horde')}
-                  value="horde"
-                  name="radio-button-server-type"
-                  inputProps={{ 'aria-label': 'horde' }}
-                />
-              }
-              label="Horde"
+          <Grid container justify="space-around">
+            <TextField
+              label="Server"
+              value={serverName}
+              disabled
+              margin="normal"
             />
-            <FormControlLabel
-              control={
-                <Radio
-                  checked={guildFaction === 'alliance'}
-                  onClick={() => setGuildFaction('alliance')}
-                  value="alliance"
-                  name="radio-button-server-type"
-                  inputProps={{ 'aria-label': 'alliance' }}
-                />
+            <TextField
+              label="Guild name"
+              value={guildName}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setGuildName(event.target.value)
               }
-              label="Alliance"
+              margin="normal"
             />
-          </div>
-          <TextField
-            label="Guild Discord"
-            value={guildDiscord}
-            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              setGuildDiscord(event.target.value)
-            }
-            margin="normal"
-          />
-          <TextField
-            label="Guild Website"
-            value={guildSite}
-            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              setGuildSite(event.target.value)
-            }
-            margin="normal"
-          />
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={!guildName || !guildFaction || !guildGMName}
-              onClick={() =>
-                openGithub(serverName!, guildName! + '.json', fileContent)
+            <TextField
+              label="GM name"
+              value={guildGMName}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setGuildGMName(event.target.value)
               }
-            >
-              Make a request to create my guild
-            </Button>
-          </div>
+              margin="normal"
+            />
+            <div style={{ marginTop: 16, marginBottom: -15 }}>
+              <FormLabel component="legend">Faction</FormLabel>
+              <FormControlLabel
+                control={
+                  <Radio
+                    checked={guildFaction === 'horde'}
+                    onClick={() => setGuildFaction('horde')}
+                    value="horde"
+                    name="radio-button-server-type"
+                    inputProps={{ 'aria-label': 'horde' }}
+                  />
+                }
+                label="Horde"
+              />
+              <FormControlLabel
+                control={
+                  <Radio
+                    checked={guildFaction === 'alliance'}
+                    onClick={() => setGuildFaction('alliance')}
+                    value="alliance"
+                    name="radio-button-server-type"
+                    inputProps={{ 'aria-label': 'alliance' }}
+                  />
+                }
+                label="Alliance"
+              />
+            </div>
+            <TextField
+              label="Guild Discord"
+              value={guildDiscord}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setGuildDiscord(event.target.value)
+              }
+              margin="normal"
+            />
+            <TextField
+              label="Guild Website"
+              value={guildSite}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setGuildSite(event.target.value)
+              }
+              margin="normal"
+            />
+            <div style={{ marginTop: 14 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={!guildName || !guildFaction || !guildGMName}
+                onClick={() =>
+                  openGithub(serverName!, guildName! + '.json', fileContent)
+                }
+              >
+                Make a request to create my guild
+              </Button>
+            </div>
+          </Grid>
         </form>
       </div>
     </Modal>

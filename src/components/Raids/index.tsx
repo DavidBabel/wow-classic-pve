@@ -4,6 +4,7 @@ import { Case } from '../Case/index';
 import styles from './styles.module.scss';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { ModalAddKill } from '../ModalAddKill';
+import { deepClone } from '../../utils/object';
 
 // TODO facto modal styles
 // TODO replace modal by dialog
@@ -111,9 +112,10 @@ export function Raids({
       // </Modal>
     );
   }
+  const reversedDisplayedRaids = deepClone(displayedRaids).reverse();
   return (
     <div className={styles.Raids}>
-      {displayedRaids.reverse().map((raidName: RaidNames) => {
+      {reversedDisplayedRaids.map((raidName: RaidNames) => {
         const bosses = Object.keys(sortedGuilds[0].raids[raidName]);
         const foundFirsts = bosses.reduce((stack: any, next) => {
           stack[next] = {
@@ -127,7 +129,19 @@ export function Raids({
           <div className={styles.raidBlock}>
             {bosses.reverse().map((b: string) => (
               <div className={styles.bossLine}>
-                <div className={styles.bossName}>{b}</div>
+                <div className={styles.bossName}>
+                  <a
+                    style={{
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontWeight: 'bold'
+                    }}
+                    href={`https://classic.wowhead.com/search?q=${b}`}
+                    target="_href"
+                  >
+                    {b}
+                  </a>
+                </div>
                 {sortedGuilds
                   .map(g => {
                     const bossValue = (g.raids[raidName] as any)[b];

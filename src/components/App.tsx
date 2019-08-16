@@ -19,6 +19,9 @@ import {
   FormControlLabel
 } from '@material-ui/core';
 
+// TODO a bit of responsive
+// TODO check scroll
+// TODO use "ranking" as name of the app
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
@@ -76,18 +79,21 @@ export default function App({ match, history }: Props) {
   return (
     <div style={{ marginTop: 100, marginBottom: 150 }}>
       <Menu currentServer={currentServerName} />
+      <div style={{ position: 'fixed', bottom: 8, left: 14 }}>
+        <FormControlLabel
+          style={{ color: 'grey' }}
+          control={
+            <MaterialCheckbox
+              checked={showEmptyGuilds}
+              onChange={() => setEmptyGuildsVisibility(!showEmptyGuilds)}
+              color="primary"
+            />
+          }
+          label={'Show hidden guilds'}
+        />
+      </div>
       <div style={{ position: 'fixed', right: 0, top: 0, display: 'flex' }}>
         <div style={{ margin: 10 }}>
-          <FormControlLabel
-            control={
-              <MaterialCheckbox
-                checked={showEmptyGuilds}
-                onChange={() => setEmptyGuildsVisibility(!showEmptyGuilds)}
-                color="primary"
-              />
-            }
-            label={'Show all guilds'}
-          />
           {(Object.keys(currentDisplayedFactions) as Faction[]).map(
             (factionName: Faction) => (
               <Checkbox
