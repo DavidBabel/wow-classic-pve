@@ -14,7 +14,9 @@ import {
   GridPlus,
   HelpIcon,
   CloseMenuIcon,
-  BugIcon
+  BugIcon,
+  CoinIcon,
+  BitcoinIcon
 } from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
@@ -44,6 +46,8 @@ export function Menu({ currentServer }: Props) {
     setModalCreateGuildVisibility
   ] = React.useState(false);
 
+  const listWidth = 265;
+
   return (
     <div style={{ display: 'inline-block' }}>
       <div style={{ position: 'fixed', top: 5, left: 5 }}>
@@ -56,7 +60,7 @@ export function Menu({ currentServer }: Props) {
         >
           <CloseMenuIcon onClick={() => setOpen(false)} />
         </div>
-        <List style={{ width: 250 }}>
+        <List style={{ width: listWidth }}>
           <h2 style={{ textAlign: 'center', marginTop: 55 }}>Update infos</h2>
           <ListItem
             button
@@ -116,6 +120,21 @@ export function Menu({ currentServer }: Props) {
             button
             onClick={() => {
               setOpen(false);
+              window.open('https://www.paypal.me/devilhunter/2', '_blank');
+            }}
+          >
+            <ListItemIcon>
+              <CoinIcon />
+            </ListItemIcon>
+            {/* <ListItemIcon>
+              <BitcoinIcon />
+            </ListItemIcon> */}
+            <ListItemText primary="Thank me with a beer" />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
               window.open(
                 'https://github.com/DavidBabel/wow-classic-pve/issues',
                 '_blank'
@@ -127,7 +146,7 @@ export function Menu({ currentServer }: Props) {
             </ListItemIcon>
             <ListItemText primary="Report a bug" />
           </ListItem>
-          <AppVersion />
+          <AppVersion width={listWidth} />
         </List>
       </Drawer>
       <ModalCreateServer

@@ -2,7 +2,11 @@ import React from 'react';
 import { ListItem, ListItemText } from '@material-ui/core';
 import CONFIG from '../../config';
 
-export function AppVersion() {
+interface Props {
+  width: number;
+}
+
+export function AppVersion({ width }: Props) {
   return (
     <ListItem
       style={{
@@ -10,7 +14,7 @@ export function AppVersion() {
         bottom: 0,
         color: '#c0c0c0',
         textAlign: 'right',
-        width: 250
+        width
       }}
     >
       <ListItemText primary={CONFIG.appVersion} />
