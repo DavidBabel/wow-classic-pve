@@ -22,6 +22,8 @@ import {
 // TODO a bit of responsive
 // TODO check scroll
 // TODO use "ranking" as name of the app
+// TODO add raid icon to display
+// TODO : make app text not selectable ?
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
@@ -49,8 +51,6 @@ export default function App({ match, history }: Props) {
     aq40: false,
     naxx: false
   });
-
-  // TODO filtrer les guildes qui n'ont rien down et proposer un bouton pour les afficher
 
   const currentServer = typedDatabase[currentServerName];
 
