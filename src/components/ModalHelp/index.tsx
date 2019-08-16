@@ -53,9 +53,16 @@ export function ModalHelp({ isOpen, onClose }: Props) {
           to make a proposal in this project.
         </p>
         <p>
-          The only (free) requirement is to have a GitHub account. Then the
-          formularies of the app automatically create or update the right files
-          for you.
+          The only (free) requirement is to have a{' '}
+          <a
+            style={{ color: 'black', fontWeight: 'bold' }}
+            href="https://github.com/"
+            target="_href"
+          >
+            GitHub account
+          </a>
+          . Then the formularies of the app automatically create or update the
+          right files for you.
         </p>
         <p>
           Just think to scroll down and create a branch with your modifications
