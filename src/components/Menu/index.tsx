@@ -15,8 +15,8 @@ import {
   HelpIcon,
   CloseMenuIcon,
   BugIcon,
-  CoinIcon,
-  BitcoinIcon
+  CoinIcon
+  // BitcoinIcon
 } from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
