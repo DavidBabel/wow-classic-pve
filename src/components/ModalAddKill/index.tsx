@@ -51,7 +51,7 @@ export function ModalAddKill({
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Please fill the form {required}</DialogTitle>
+      <DialogTitle>Adding a boss kill {required}</DialogTitle>
       <DialogContent>
         <GithubInfos />
         <List>
