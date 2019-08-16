@@ -19,6 +19,7 @@ import {
   FormControlLabel
 } from '@material-ui/core';
 
+// TODO : finish to make modal as Dialogs
 // TODO a bit of responsive
 // TODO check scroll
 // TODO use "ranking" as name of the app
