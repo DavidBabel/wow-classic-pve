@@ -19,6 +19,7 @@ import {
   FormControlLabel
 } from '@material-ui/core';
 
+// TODO use "ranking" as name of the app
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
