@@ -47,7 +47,7 @@ export function ModalHelp({ isOpen, onClose }: Props) {
       onClose={onClose}
     >
       <div style={modalStyle} className={classes.paper}>
-        <h2>Help</h2>
+        <h2>Help with updates</h2>
         <p>
           This app rely on a github project. To update the informations you have
           to make a proposal in this project.

@@ -8,17 +8,24 @@ const killAlliance = `${baseUrl}/killAlliance.gif`;
 const killHorde = `${baseUrl}/killHorde.gif`;
 const nokill = `${baseUrl}/nokill.gif`;
 const fkill = `${baseUrl}/fkill.gif`;
-const fkillHorde = `${baseUrl}/fkillHorde.gif`;
-const fkillAlliance = `${baseUrl}/fkillAlliance.gif`;
+export const fkillHorde = `${baseUrl}/fkillHorde.gif`;
+export const fkillAlliance = `${baseUrl}/fkillAlliance.gif`;
 
 interface Props {
   isFirst?: boolean;
   isServerFirst?: boolean;
   date?: string;
   faction?: Faction;
+  onClick: () => void;
 }
 
-export function Case({ date, isFirst, isServerFirst, faction }: Props) {
+export function Case({
+  date,
+  isFirst,
+  isServerFirst,
+  faction,
+  onClick
+}: Props) {
   let imgSrc = faction === 'horde' ? killHorde : killAlliance;
   if (!date) {
     imgSrc = nokill;
@@ -30,30 +37,8 @@ export function Case({ date, isFirst, isServerFirst, faction }: Props) {
     }
   }
   return (
-    <div className={styles.Case}>
+    <div className={styles.Case} onClick={onClick}>
       <img src={imgSrc} alt={date} title={date} />
     </div>
   );
 }
-// interface DateProps {
-//   date: string;
-// }
-
-// export function FirstServerCase({ date }: DateProps) {
-//   return <Case isServerFirst={true} date={date} />;
-// }
-// export function FirstHordeCase({ date }: DateProps) {
-//   return <Case faction="horde" isFirst={true} date={date} />;
-// }
-// export function FirstAllianceCase({ date }: DateProps) {
-//   return <Case faction="alliance" isFirst={true} date={date} />;
-// }
-// export function KillHordeCase({ date }: DateProps) {
-//   return <Case faction="horde" date={date} />;
-// }
-// export function KillAllianceCase({ date }: DateProps) {
-//   return <Case faction="alliance" date={date} />;
-// }
-// export function EmptyCase() {
-//   return <Case />;
-// }

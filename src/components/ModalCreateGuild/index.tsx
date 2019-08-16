@@ -155,7 +155,7 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
                 openGithub(serverName!, guildName! + '.json', fileContent)
               }
             >
-              Make a request to create my server
+              Make a request to create my guild
             </Button>
           </div>
         </form>

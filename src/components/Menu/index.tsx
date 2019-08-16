@@ -1,29 +1,32 @@
 import React from 'react';
 import {
   Drawer,
-  Button,
   ListItem,
   ListItemText,
   ListItemIcon,
   List,
-  Divider,
-  Typography,
-  Popover
+  Divider
 } from '@material-ui/core';
-import { MenuIcon, AddGuild, AddServer, GridPlus, HelpIcon } from './icons';
+import {
+  MenuIcon,
+  AddGuild,
+  AddServer,
+  GridPlus,
+  HelpIcon,
+  CloseMenuIcon,
+  BugIcon
+} from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
 import { ModalCreateGuild } from '../ModalCreateGuild';
 import { ModalAddKillInfo } from '../ModalAddKillInfo';
 import { ModalHelp } from '../ModalHelp';
-import { Database } from '../../types/database.type';
 
 interface Props {
-  database: Database;
   currentServer: string;
 }
 
-export function Menu({ database, currentServer }: Props) {
+export function Menu({ currentServer }: Props) {
   const [isOpen, setOpen] = React.useState(false);
   const [isModalInfoKillVisible, setModalInfoKillVisibility] = React.useState(
     false
@@ -42,11 +45,18 @@ export function Menu({ database, currentServer }: Props) {
 
   return (
     <div style={{ display: 'inline-block' }}>
-      <MenuIcon onClick={() => setOpen(true)} />
+      <div style={{ position: 'fixed', top: 5, left: 5 }}>
+        <MenuIcon onClick={() => setOpen(true)} />
+      </div>
 
       <Drawer open={isOpen} onClose={() => setOpen(false)}>
+        <div
+          style={{ position: 'fixed', top: 5, left: 5, zIndex: 888888888888 }}
+        >
+          <CloseMenuIcon onClick={() => setOpen(false)} />
+        </div>
         <List style={{ width: 250 }}>
-          <h2 style={{ textAlign: 'center' }}>Update infos</h2>
+          <h2 style={{ textAlign: 'center', marginTop: 55 }}>Update infos</h2>
           <ListItem
             button
             onClick={() => {
@@ -100,6 +110,21 @@ export function Menu({ database, currentServer }: Props) {
               <HelpIcon />
             </ListItemIcon>
             <ListItemText primary="Help" />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setOpen(false);
+              window.open(
+                'https://github.com/DavidBabel/wow-classic-pve/issues',
+                '_blank'
+              );
+            }}
+          >
+            <ListItemIcon>
+              <BugIcon />
+            </ListItemIcon>
+            <ListItemText primary="Report a bug" />
           </ListItem>
         </List>
       </Drawer>
