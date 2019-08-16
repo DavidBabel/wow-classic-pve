@@ -21,6 +21,7 @@ import { ModalCreateServer } from '../ModalCreateServer';
 import { ModalCreateGuild } from '../ModalCreateGuild';
 import { ModalAddKillInfo } from '../ModalAddKillInfo';
 import { ModalHelp } from '../ModalHelp';
+import { AppVersion } from '../AppVersion';
 
 interface Props {
   currentServer: string;
@@ -126,6 +127,7 @@ export function Menu({ currentServer }: Props) {
             </ListItemIcon>
             <ListItemText primary="Report a bug" />
           </ListItem>
+          <AppVersion />
         </List>
       </Drawer>
       <ModalCreateServer
