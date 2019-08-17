@@ -28,6 +28,7 @@ import {
 // TODO : onclick for down, fill in gray the case you just click on
 // TODO : clear cached file debug button
 // TODO : make server select a searchable select
+// TODO : scroll bar on popup
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
@@ -77,7 +78,7 @@ export default function App({ match, history }: Props) {
   );
 
   return (
-    <div style={{ marginTop: 100, marginBottom: 150 }}>
+    <div style={{ marginLeft: 60, marginTop: 100, marginBottom: 150 }}>
       <Menu currentServer={currentServerName} />
       <div style={{ position: 'fixed', bottom: 8, left: 14 }}>
         <FormControlLabel
