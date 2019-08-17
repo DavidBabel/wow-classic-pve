@@ -27,6 +27,7 @@ import {
 // TODO : make app text not selectable ?
 // TODO : onclick for down, fill in gray the case you just click on
 // TODO : clear cached file debug button
+// TODO : make server select a searchable select
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
@@ -56,10 +57,6 @@ export default function App({ match, history }: Props) {
   });
 
   const currentServer = typedDatabase[currentServerName];
-
-  if (serverName === '') {
-    history && history.push('/Sulfuron');
-  }
 
   if (!servers.includes(serverName)) {
     return (
