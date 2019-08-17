@@ -36,8 +36,10 @@ export function Case({
       imgSrc = faction === 'horde' ? fkillHorde : fkillAlliance;
     }
   }
+  const cursorStyle = imgSrc === nokill ? { cursor: 'pointer' } : {};
+
   return (
-    <div className={styles.Case} onClick={onClick}>
+    <div className={styles.Case} style={cursorStyle} onClick={onClick}>
       <img src={imgSrc} alt={date} title={date} />
     </div>
   );
