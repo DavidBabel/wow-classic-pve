@@ -29,6 +29,7 @@ import {
 // TODO : clear cached file debug button
 // TODO : make server select a searchable select
 // TODO : scroll bar on popup
+// TODO : put analytics & hotjar
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
