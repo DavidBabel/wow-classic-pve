@@ -30,6 +30,8 @@ import {
 // TODO : make server select a searchable select
 // TODO : scroll bar on popup
 // TODO : put analytics & hotjar
+// TODO : fix react console warn / error
+// TODO : do TODO
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 

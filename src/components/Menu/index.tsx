@@ -136,7 +136,7 @@ export function Menu({ currentServer }: Props) {
             onClick={() => {
               setOpen(false);
               window.open(
-                'https://github.com/DavidBabel/wow-classic-pve/issues',
+                'https://github.com/DavidBabel/wow-classic-pve/issues/new/choose',
                 '_blank'
               );
             }}
