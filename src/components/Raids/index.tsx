@@ -2,35 +2,9 @@ import React from 'react';
 import { RaidNames, Server, Guild } from '../../types/database.type';
 import { Case } from '../Case/index';
 import styles from './styles.module.scss';
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { ModalAddKill } from '../ModalAddKill';
 import { deepClone } from '../../utils/object';
-
-// TODO facto modal styles
-// TODO replace modal by dialog
-function getModalStyle() {
-  const top = 30;
-  const left = 45;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 4)
-    }
-  })
-);
+import { ModalNoGuild } from '../ModalNoGuild';
 
 function sortGuilds(unsortedGuilds: Guild[]) {
   return unsortedGuilds.sort((a: any, b: any) => {
@@ -84,8 +58,6 @@ export function Raids({
   displayedRaids,
   showEmptyGuilds
 }: Props) {
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [currentGuildName, setCurrentGuildName] = React.useState('');
   const [currentRaidName, setCurrentRaidName] = React.useState<RaidNames>();
@@ -104,13 +76,7 @@ export function Raids({
   const sortedGuilds = sortGuilds(unsortedGuilds);
 
   if (!sortedGuilds[0]) {
-    return (
-      // <Modal open={true}>
-      <div style={modalStyle} className={classes.paper}>
-        Please create your first guild for this server, open the menu to do so.
-      </div>
-      // </Modal>
-    );
+    return <ModalNoGuild />;
   }
   const reversedDisplayedRaids = deepClone(displayedRaids).reverse();
   return (
