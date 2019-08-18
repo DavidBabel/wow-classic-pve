@@ -1,43 +1,19 @@
 import React, { ChangeEvent } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+
 import {
   Radio,
   TextField,
-  Modal,
   FormControlLabel,
-  Button,
-  Grid,
-  FormLabel
+  FormLabel,
+  DialogContent,
+  List
 } from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, ListItem } from '../Dialog';
 
 import { openGithub } from '../../utils/openGithub';
 
 import guildRef from '../../utils/guildReference.json';
 import { GithubInfos } from '../GithubInfos';
-
-function getModalStyle() {
-  const top = 45;
-  const left = 45;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 4)
-    }
-  })
-);
 
 interface Props {
   isOpen: boolean;
@@ -46,9 +22,6 @@ interface Props {
 }
 
 export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
   const [guildName, setGuildName] = React.useState<string>();
   const [guildFaction, setGuildFaction] = React.useState<string>();
   const [guildGMName, setGuildGMName] = React.useState<string>();
@@ -69,17 +42,12 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
   };
 
   return (
-    <Modal
-      // aria-labelledby="simple-modal-title"
-      // aria-describedby="simple-modal-description"
-      open={isOpen}
-      onClose={onClose}
-    >
-      <div style={modalStyle} className={classes.paper}>
-        <h2>Please fill the form</h2>
+    <Dialog open={isOpen} onClose={onClose}>
+      <DialogTitle>Add your guild</DialogTitle>
+      <DialogContent>
         <GithubInfos />
-        <form noValidate autoComplete="off">
-          <Grid container justify="space-around">
+        <List>
+          <ListItem>
             <TextField
               label="Server"
               value={serverName}
@@ -102,6 +70,8 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
               }
               margin="normal"
             />
+          </ListItem>
+          <ListItem>
             <div style={{ marginTop: 16, marginBottom: -15 }}>
               <FormLabel component="legend">Faction</FormLabel>
               <FormControlLabel
@@ -129,7 +99,10 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
                 label="Alliance"
               />
             </div>
+          </ListItem>
+          <ListItem>
             <TextField
+              style={{ width: '100%' }}
               label="Guild Discord"
               value={guildDiscord}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -137,7 +110,10 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
               }
               margin="normal"
             />
+          </ListItem>
+          <ListItem>
             <TextField
+              style={{ width: '100%' }}
               label="Guild Website"
               value={guildSite}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -145,21 +121,19 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
               }
               margin="normal"
             />
-            <div style={{ marginTop: 14 }}>
-              <Button
-                variant="contained"
-                color="primary"
-                disabled={!guildName || !guildFaction || !guildGMName}
-                onClick={() =>
-                  openGithub(serverName!, guildName! + '.json', fileContent)
-                }
-              >
-                Make a request to create my guild
-              </Button>
-            </div>
-          </Grid>
-        </form>
-      </div>
-    </Modal>
+          </ListItem>
+        </List>
+
+        <DialogActions
+          disabled={!guildName || !guildFaction || !guildGMName}
+          onClose={onClose}
+          onClick={() =>
+            openGithub(serverName!, guildName! + '.json', fileContent)
+          }
+        >
+          Make a request to add my guild
+        </DialogActions>
+      </DialogContent>
+    </Dialog>
   );
 }
