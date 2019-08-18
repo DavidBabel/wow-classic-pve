@@ -129,7 +129,7 @@ export function Menu({ currentServer }: Props) {
             {/* <ListItemIcon>
               <BitcoinIcon />
             </ListItemIcon> */}
-            <ListItemText primary="Thank me with a beer" />
+            <ListItemText primary="Thank me with a 🍺" />
           </ListItem>
           <ListItem
             button

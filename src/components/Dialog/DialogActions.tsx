@@ -19,7 +19,7 @@ export function DialogActions({
 }: Props) {
   return (
     <MaterialDialogActions
-      style={{ borderTop: '1px solid #e0e0e0' }}
+      style={{ borderTop: '1px solid #e0e0e0', marginTop: 10 }}
       {...props}
     >
       {onClose && (
