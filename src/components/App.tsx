@@ -41,7 +41,7 @@ export default function App({ match, history }: Props) {
   const serverName = (match && match.params && match.params.serverName) || '';
   const [showRaidDrawer, setRaidDrawerVisibility] = useState(false);
   const [currentServerName, setCurrentServerName] = useState(serverName);
-  const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(false);
+  const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(true);
   const [currentDisplayedFactions, setFactionDisplayed] = useState<
     DisplayedFactions
   >({
