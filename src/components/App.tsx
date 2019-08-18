@@ -20,19 +20,17 @@ import {
 } from '@material-ui/core';
 import { fkillHorde, fkillAlliance } from '../utils/images';
 
-// TODO : finish to make modal as Dialogs
 // TODO a bit of responsive
 // TODO check scroll
-// TODO use "ranking" as name of the app
 // TODO add raid icon to display
-// TODO : make app text not selectable ?
 // TODO : onclick for down, fill in gray the case you just click on
 // TODO : clear cached file debug button
 // TODO : make server select a searchable select
 // TODO : scroll bar on popup
 // TODO : put analytics & hotjar
 // TODO : fix react console warn / error
-// TODO : cleaner tooltip to display date
+// TODO : cleaner tooltip to display date of down
+// TODO ? retreive version this from package.json ?
 // TODO : do TODO
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
