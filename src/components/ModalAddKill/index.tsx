@@ -51,7 +51,7 @@ export function ModalAddKill({
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Please fill the form {required}</DialogTitle>
+      <DialogTitle>Add a boss kill {required}</DialogTitle>
       <DialogContent>
         <GithubInfos />
         <List>
@@ -75,7 +75,7 @@ export function ModalAddKill({
               />
               <KeyboardTimePicker
                 margin="normal"
-                label="Approximative time of kill"
+                label="~ Time of kill (in your timezone)"
                 value={date}
                 onChange={(date: any) => date && setDate(date)}
                 KeyboardButtonProps={{

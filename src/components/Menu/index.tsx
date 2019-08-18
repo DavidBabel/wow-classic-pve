@@ -15,8 +15,8 @@ import {
   HelpIcon,
   CloseMenuIcon,
   BugIcon,
-  CoinIcon,
-  BitcoinIcon
+  CoinIcon
+  // BitcoinIcon
 } from './icons';
 
 import { ModalCreateServer } from '../ModalCreateServer';
@@ -129,14 +129,14 @@ export function Menu({ currentServer }: Props) {
             {/* <ListItemIcon>
               <BitcoinIcon />
             </ListItemIcon> */}
-            <ListItemText primary="Thank me with a beer" />
+            <ListItemText primary="Thank me with a 🍺" />
           </ListItem>
           <ListItem
             button
             onClick={() => {
               setOpen(false);
               window.open(
-                'https://github.com/DavidBabel/wow-classic-pve/issues',
+                'https://github.com/DavidBabel/wow-classic-pve/issues/new/choose',
                 '_blank'
               );
             }}

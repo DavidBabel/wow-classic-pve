@@ -1,8 +1,8 @@
 {
   "infos": {
-    "cleanName": "Awaken3",
-    "faction": "alliance",
-    "gm": "Devilhunter",
+    "cleanName": "Preview Horde",
+    "faction": "horde",
+    "gm": "preview gm",
     "discord": "",
     "site": ""
   },
@@ -18,10 +18,10 @@
       "Taerar": false
     },
     "mc": {
-      "Lucifron": "2019-08-14",
-      "Magmadar": false,
+      "Lucifron": "2019-07-18T18:05",
+      "Magmadar": "2019-08-18T18:07",
       "Gehennas": false,
-      "Garr": "2019-08-14",
+      "Garr": false,
       "Shazzrah": false,
       "Baron Geddon": false,
       "Sulfuron Harbinger": false,

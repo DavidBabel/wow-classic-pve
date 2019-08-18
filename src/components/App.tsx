@@ -11,17 +11,29 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Raids } from './Raids/index';
 import { Menu } from './Menu';
 import { capitalize } from '../utils/string';
-import { fkillAlliance, fkillHorde } from './Case';
+
 import {
   Drawer,
   Button,
   Checkbox as MaterialCheckbox,
   FormControlLabel
 } from '@material-ui/core';
+import { fkillHorde, fkillAlliance } from '../utils/images';
 
+// TODO : finish to make modal as Dialogs
 // TODO a bit of responsive
 // TODO check scroll
 // TODO use "ranking" as name of the app
+// TODO add raid icon to display
+// TODO : make app text not selectable ?
+// TODO : onclick for down, fill in gray the case you just click on
+// TODO : clear cached file debug button
+// TODO : make server select a searchable select
+// TODO : scroll bar on popup
+// TODO : put analytics & hotjar
+// TODO : fix react console warn / error
+// TODO : cleaner tooltip to display date
+// TODO : do TODO
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
 
@@ -31,7 +43,7 @@ export default function App({ match, history }: Props) {
   const serverName = (match && match.params && match.params.serverName) || '';
   const [showRaidDrawer, setRaidDrawerVisibility] = useState(false);
   const [currentServerName, setCurrentServerName] = useState(serverName);
-  const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(false);
+  const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(true);
   const [currentDisplayedFactions, setFactionDisplayed] = useState<
     DisplayedFactions
   >({
@@ -50,13 +62,7 @@ export default function App({ match, history }: Props) {
     naxx: false
   });
 
-  // TODO filtrer les guildes qui n'ont rien down et proposer un bouton pour les afficher
-
   const currentServer = typedDatabase[currentServerName];
-
-  if (serverName === '') {
-    history && history.push('/Sulfuron');
-  }
 
   if (!servers.includes(serverName)) {
     return (
@@ -77,7 +83,7 @@ export default function App({ match, history }: Props) {
   );
 
   return (
-    <div style={{ marginTop: 100, marginBottom: 150 }}>
+    <div style={{ marginLeft: 60, marginTop: 100, marginBottom: 150 }}>
       <Menu currentServer={currentServerName} />
       <div style={{ position: 'fixed', bottom: 8, left: 14 }}>
         <FormControlLabel
@@ -93,7 +99,7 @@ export default function App({ match, history }: Props) {
         />
       </div>
       <div style={{ position: 'fixed', right: 0, top: 0, display: 'flex' }}>
-        <div style={{ margin: 10 }}>
+        <div style={{ margin: 10, marginTop: 21, marginRight: 14 }}>
           {(Object.keys(currentDisplayedFactions) as Faction[]).map(
             (factionName: Faction) => (
               <Checkbox

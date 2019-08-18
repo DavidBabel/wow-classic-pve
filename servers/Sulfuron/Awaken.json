@@ -18,8 +18,8 @@
       "Taerar": false
     },
     "mc": {
-      "Lucifron": "2019-08-16",
-      "Magmadar": "2019-08-13",
+      "Lucifron": false,
+      "Magmadar": false,
       "Gehennas": false,
       "Garr": false,
       "Shazzrah": false,

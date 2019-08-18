@@ -1,15 +1,14 @@
 import React from 'react';
 import { Faction } from '../../types/database.type';
 import styles from './styles.module.scss';
-import CONFIG from '../../config';
-
-const baseUrl = `${CONFIG.appPath}/img/skin/${CONFIG.skin}`;
-const killAlliance = `${baseUrl}/killAlliance.gif`;
-const killHorde = `${baseUrl}/killHorde.gif`;
-const nokill = `${baseUrl}/nokill.gif`;
-const fkill = `${baseUrl}/fkill.gif`;
-export const fkillHorde = `${baseUrl}/fkillHorde.gif`;
-export const fkillAlliance = `${baseUrl}/fkillAlliance.gif`;
+import {
+  killHorde,
+  killAlliance,
+  nokill,
+  fkill,
+  fkillHorde,
+  fkillAlliance
+} from '../../utils/images';
 
 interface Props {
   isFirst?: boolean;
@@ -36,8 +35,10 @@ export function Case({
       imgSrc = faction === 'horde' ? fkillHorde : fkillAlliance;
     }
   }
+  const cursorStyle = imgSrc === nokill ? { cursor: 'pointer' } : {};
+
   return (
-    <div className={styles.Case} onClick={onClick}>
+    <div className={styles.Case} style={cursorStyle} onClick={onClick}>
       <img src={imgSrc} alt={date} title={date} />
     </div>
   );

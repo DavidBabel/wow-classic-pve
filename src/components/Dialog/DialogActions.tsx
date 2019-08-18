@@ -5,26 +5,28 @@ import MaterialDialogActions, {
 import { Button } from '@material-ui/core';
 
 interface Props extends DialogActionsProps {
-  onClose: () => void;
+  onClose?: () => void;
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export function DialogActions({
   onClose,
   onClick,
-  disabled,
+  disabled = false,
   children,
   ...props
 }: Props) {
   return (
     <MaterialDialogActions
-      style={{ borderTop: '1px solid #e0e0e0' }}
+      style={{ borderTop: '1px solid #e0e0e0', marginTop: 10 }}
       {...props}
     >
-      <Button onClick={onClose} color="primary">
-        Cancel
-      </Button>
+      {onClose && (
+        <Button onClick={onClose} color="primary">
+          Cancel
+        </Button>
+      )}
       <Button
         variant="contained"
         color="primary"
