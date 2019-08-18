@@ -31,6 +31,8 @@ import { fkillHorde, fkillAlliance } from '../utils/images';
 // TODO : fix react console warn / error
 // TODO : cleaner tooltip to display date of down
 // TODO ? retreive version this from package.json ?
+// TODO : add a title
+// TODO : add release/update date into build
 // TODO : do TODO
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
