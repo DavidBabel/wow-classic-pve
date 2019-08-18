@@ -1,5 +1,5 @@
 const CONFIG = {
-  appVersion: 'v1.0.0-beta', // TODO ? retreive this from package.json ?
+  appVersion: 'v1.0.0-beta',
   appPath: process.env.PUBLIC_URL || '',
   skin: 'default'
 };

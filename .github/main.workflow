@@ -52,7 +52,7 @@ action "Build" {
   ]
 
   env   = {
-    PUBLIC_URL = "/wow-classic-pve"
+    PUBLIC_URL = ""
   }
 }
 
