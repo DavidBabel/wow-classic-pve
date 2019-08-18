@@ -11,13 +11,14 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Raids } from './Raids/index';
 import { Menu } from './Menu';
 import { capitalize } from '../utils/string';
-import { fkillAlliance, fkillHorde } from './Case';
+
 import {
   Drawer,
   Button,
   Checkbox as MaterialCheckbox,
   FormControlLabel
 } from '@material-ui/core';
+import { fkillHorde, fkillAlliance } from '../utils/images';
 
 // TODO : finish to make modal as Dialogs
 // TODO a bit of responsive
@@ -31,6 +32,7 @@ import {
 // TODO : scroll bar on popup
 // TODO : put analytics & hotjar
 // TODO : fix react console warn / error
+// TODO : cleaner tooltip to display date
 // TODO : do TODO
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);

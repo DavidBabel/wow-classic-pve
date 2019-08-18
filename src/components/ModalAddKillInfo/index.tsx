@@ -1,9 +1,7 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogTitle } from '../Dialog';
 import { DialogContent } from '@material-ui/core';
-import CONFIG from '../../config';
-
-const helpAddKillImage = `${CONFIG.appPath}/img/help-add-kill.png`;
+import { helpAddKillImage } from '../../utils/images';
 
 interface Props {
   isOpen: boolean;

@@ -1,9 +1,7 @@
 import React from 'react';
-import CONFIG from '../../config';
 import { Dialog, DialogActions, DialogTitle } from '../Dialog';
 import { DialogContent } from '@material-ui/core';
-
-const helpImage = `${CONFIG.appPath}/img/help.gif`;
+import { helpImage } from '../../utils/images';
 
 interface Props {
   isOpen: boolean;
