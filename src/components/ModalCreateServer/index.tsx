@@ -23,6 +23,7 @@ export function ModalCreateServer({ isOpen, onClose }: Props) {
   const [serverName, setServerName] = React.useState<string>();
   const [serverType, setServerType] = React.useState<string>();
   const [serverLang, setServerLang] = React.useState<string>();
+  const [hasGithubAccount, setGithubAccount] = React.useState(false);
 
   const fileContent = {
     lang: serverLang,
@@ -33,7 +34,10 @@ export function ModalCreateServer({ isOpen, onClose }: Props) {
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>Add your server</DialogTitle>
       <DialogContent>
-        <GithubInfos />
+        <GithubInfos
+          hasGithubAccount={hasGithubAccount}
+          setGithubAccount={setGithubAccount}
+        />
         <List>
           <ListItem>
             <TextField
@@ -94,7 +98,9 @@ export function ModalCreateServer({ isOpen, onClose }: Props) {
         </List>
       </DialogContent>
       <DialogActions
-        disabled={!serverLang || !serverType || !serverName}
+        disabled={
+          !hasGithubAccount || !serverLang || !serverType || !serverName
+        }
         onClose={onClose}
         onClick={() =>
           openGithub(serverName!, '@server-infos.json', fileContent)

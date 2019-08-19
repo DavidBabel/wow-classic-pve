@@ -27,6 +27,7 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
   const [guildGMName, setGuildGMName] = React.useState<string>();
   const [guildDiscord, setGuildDiscord] = React.useState<string>('');
   const [guildSite, setGuildSite] = React.useState<string>('');
+  const [hasGithubAccount, setGithubAccount] = React.useState(false);
 
   const fileContent = {
     infos: {
@@ -45,7 +46,10 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>Add your guild</DialogTitle>
       <DialogContent>
-        <GithubInfos />
+        <GithubInfos
+          hasGithubAccount={hasGithubAccount}
+          setGithubAccount={setGithubAccount}
+        />
         <List>
           <ListItem>
             <TextField
@@ -125,7 +129,9 @@ export function ModalCreateGuild({ isOpen, onClose, serverName }: Props) {
         </List>
 
         <DialogActions
-          disabled={!guildName || !guildFaction || !guildGMName}
+          disabled={
+            !hasGithubAccount || !guildName || !guildFaction || !guildGMName
+          }
           onClose={onClose}
           onClick={() =>
             openGithub(serverName!, guildName! + '.json', fileContent)
