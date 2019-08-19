@@ -41,6 +41,7 @@ export function ModalAddKill({
   bossName
 }: Props) {
   const [date, setDate] = React.useState(new Date());
+  const [hasGithubAccount, setGithubAccount] = React.useState(false);
 
   let stringDate: string;
   try {
@@ -53,7 +54,10 @@ export function ModalAddKill({
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>Add a boss kill {required}</DialogTitle>
       <DialogContent>
-        <GithubInfos />
+        <GithubInfos
+          hasGithubAccount={hasGithubAccount}
+          setGithubAccount={setGithubAccount}
+        />
         <List>
           <ListItem>
             <TextField label="Server" value={serverName} disabled />
@@ -98,7 +102,7 @@ export function ModalAddKill({
         </DialogContentText>
       </DialogContent>
       <DialogActions
-        disabled={!stringDate}
+        disabled={!hasGithubAccount || !stringDate}
         onClose={onClose}
         onClick={() => {
           // TODO fix this type
