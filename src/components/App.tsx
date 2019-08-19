@@ -22,6 +22,7 @@ import { fkillHorde, fkillAlliance } from '../utils/images';
 
 // TODO a bit of responsive
 // TODO check scroll
+// TODO : add dismissable red warning for github account (popup with yes)
 // TODO add raid icon to display
 // TODO : onclick for down, fill in gray the case you just click on
 // TODO : clear cached file debug button
@@ -31,6 +32,8 @@ import { fkillHorde, fkillAlliance } from '../utils/images';
 // TODO : fix react console warn / error
 // TODO : cleaner tooltip to display date of down
 // TODO ? retreive version this from package.json ?
+// TODO : add a title
+// TODO : add release/update date into build
 // TODO : do TODO
 const typedDatabase = (rawDB as unknown) as Database;
 const servers = Object.keys(typedDatabase);
@@ -38,7 +41,8 @@ const servers = Object.keys(typedDatabase);
 type Props = RouteComponentProps<{ serverName?: string }>;
 
 export default function App({ match, history }: Props) {
-  const serverName = (match && match.params && match.params.serverName) || '';
+  const serverName =
+    (match && match.params && match.params.serverName) || 'Sulfuron';
   const [showRaidDrawer, setRaidDrawerVisibility] = useState(false);
   const [currentServerName, setCurrentServerName] = useState(serverName);
   const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(true);
