@@ -22,6 +22,7 @@ import { fkillHorde, fkillAlliance } from '../utils/images';
 
 // TODO a bit of responsive
 // TODO check scroll
+// TODO : add dismissable red warning for github account (popup with yes)
 // TODO add raid icon to display
 // TODO : onclick for down, fill in gray the case you just click on
 // TODO : clear cached file debug button
@@ -40,7 +41,8 @@ const servers = Object.keys(typedDatabase);
 type Props = RouteComponentProps<{ serverName?: string }>;
 
 export default function App({ match, history }: Props) {
-  const serverName = (match && match.params && match.params.serverName) || '';
+  const serverName =
+    (match && match.params && match.params.serverName) || 'Sulfuron';
   const [showRaidDrawer, setRaidDrawerVisibility] = useState(false);
   const [currentServerName, setCurrentServerName] = useState(serverName);
   const [showEmptyGuilds, setEmptyGuildsVisibility] = useState(true);

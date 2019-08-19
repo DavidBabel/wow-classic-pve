@@ -4,16 +4,15 @@ import { DialogContentText } from '@material-ui/core';
 export function GithubInfos() {
   return (
     <DialogContentText>
-      <h5 style={{ marginBottom: 8, marginTop: 4, color: '#d0d0d0' }}>
-        First you need to have a{' '}
+      <h5 style={{ marginBottom: 8, marginTop: 4, color: 'red' }}>
         <a
-          style={{ color: '#c0c0c0', fontWeight: 'bold' }}
+          style={{ color: 'red', fontWeight: 'bold', textDecoration: 'none' }}
           href="https://github.com/"
           target="_href"
         >
-          GitHub account
-        </a>{' '}
-        (it's free).
+          Click here to create a GitHub account otherwise it will not work (it's
+          free).
+        </a>
       </h5>
     </DialogContentText>
   );
